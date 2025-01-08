@@ -6,7 +6,7 @@ authors = ["Clemens Linnhoff <clemens.linnhoff@persival.de>"]
 license = "MPL-2.0"
 readme = "README.md"
 packages = [
-    { include = "qc_material" },
+    { include = "qc_openmaterial" },
 ]
 
 
