@@ -14,7 +14,7 @@ packages = [
 python = "^3.10"
 asam-qc-baselib = "^1.0.0rc1"
 lxml = "^5.2.2"
-jsonschema = "^3.0.0"
+jsonschema = "^4.0.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.2.2"
