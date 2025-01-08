@@ -1,7 +1,0 @@
-<?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<Config>
-  <Param name="InputFile" value="tests/data/valid_schema/json.valid_schema.negative.xoma"/>
-  <CheckerBundle application="openMaterialBundle">
-    <Param name="resultFile" value="openmaterial_bundle_report.xqar"/>
-  </CheckerBundle>
-</Config>
