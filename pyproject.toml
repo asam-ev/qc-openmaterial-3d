@@ -14,13 +14,14 @@ packages = [
 python = "^3.10"
 asam-qc-baselib = "^1.0.0rc1"
 lxml = "^5.2.2"
+jsonschema = "^3.0.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.2.2"
 black = "^24.4.2"
 
 [tool.poetry.scripts]
-qc_openmaterial = 'qc_material.main:main'
+qc_openmaterial = 'qc_openmaterial.main:main'
 
 [build-system]
 requires = ["poetry-core"]

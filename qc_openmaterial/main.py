@@ -163,7 +163,7 @@ def run_checks(config: Configuration, result: Result) -> None:
             basic_checker.version_is_defined.CHECKER_ID,
         }
     ):
-        checker_data.schema_version = "1.0.0"   #todo: replace by actually getting version from file
+        checker_data.schema_version = utils.get_open_material_version(checker_data.json_file_path)
 
     # 2. Run schema check
     execute_checker(schema_checker.valid_schema, checker_data)

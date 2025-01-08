@@ -47,8 +47,8 @@ To run the application:
 
 ```bash
 qc_openmaterial --help
-usage: QC OpenScenario Checker [-h] (-d | -c CONFIG_PATH)
-This is a collection of scripts for checking validity of OpenScenario (.openmaterial) files.
+usage: QC OpenMATERIAL 3D Checker [-h] (-d | -c CONFIG_PATH)
+This is a collection of scripts for checking validity of OpenMATERIAL 3D (.xoma, .xomm, .xomp, .xompt) files.
 options:
   -h, --help            show this help message and exit
   -d, --default_config
@@ -110,7 +110,7 @@ asam.net:openmaterial:0.9.0:is_an_xml_document
 
 ## Register Checker Bundle to ASAM Quality Checker Framework
 
-Manifest file templates are provided in the [manifest_templates](manifest_templates/) folder to register the ASAM OpenScenario XML Checker Bundle with the [ASAM Quality Checker Framework](https://github.com/asam-ev/qc-framework/tree/main).
+Manifest file templates are provided in the [manifest_templates](manifest_templates/) folder to register the ASAM OpenMATERIAL 3D Checker Bundle with the [ASAM Quality Checker Framework](https://github.com/asam-ev/qc-framework/tree/main).
 
 ### Linux Manifest Template
 
