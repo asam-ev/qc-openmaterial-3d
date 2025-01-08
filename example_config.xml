@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Config>
+
+    <Param name="InputFile" value="/path/to/example_asset.xoma" />
+
+    <CheckerBundle application="openMaterialBundle">
+        <Param name="resultFile" value="xosc_bundle_report.xqar" />
+        <Checker checkerId="check_asam_openmaterial_valid_json_document" maxLevel="1" minLevel="3" />
+        <Checker checkerId="check_asam_openmaterial_version_is_defined" maxLevel="1" minLevel="3" />
+        <Checker checkerId="check_asam_openmaterial_valid_schema" maxLevel="1" minLevel="3" />
+    </CheckerBundle>
+
+    <ReportModule application="TextReport">
+        <Param name="strInputFile" value="Result.xqar" />
+        <Param name="strReportFile" value="Report.txt" />
+    </ReportModule>
+
+</Config>
