@@ -1,6 +1,7 @@
 # asam-qc-openmaterial
 
-This project implements the [ASAM OpenMATERIAL 3D Checker Bundle](checker_bundle_doc.md).
+This repository provides a [Checker Bundle](checker_bundle_doc.md) designed for the [ASAM Quality Checker Framework](https://github.com/asam-ev/qc-framework).
+It tests ASAM OpenMATERIAL 3D files for conformity with the standard.
 
 - [asam-qc-openmaterial](#asam-qc-openmaterial)
   - [Installation and usage](#installation-and-usage)
@@ -23,24 +24,11 @@ asam-qc-openmaterial can be installed using pip or from source.
 
 asam-qc-openmaterial can be installed using pip.
 
-**From PyPi**
-
-```bash
-pip install asam-qc-openmaterial
-```
-
-**From GitHub repository**
-
-```bash
-pip install asam-qc-openmaterial@git+https://github.com/asam-ev/qc-openmaterial@main
-```
-
-The above command will install `asam-qc-openmaterial` from the `main` branch. If you want to install `asam-qc-openmaterial` from another branch or tag, replace `@main` with the desired branch or tag.
-
 **From a local repository**
 
 ```bash
-pip install /home/user/qc-openmaterial
+git clone https://github.com/Persival-GmbH/qc-openmaterial.git
+pip install ./qc-openmaterial
 ```
 
 To run the application:
@@ -63,7 +51,7 @@ python qc_openmaterial/main.py --help
 python -m qc_openmaterial.main --help
 ```
 
-### Installation from source
+### Installation using poetry
 
 After cloning the repository, install the project using [Poetry](https://python-poetry.org/).
 
@@ -81,30 +69,12 @@ python -m qc_openmaterial.main --help
 
 ### Example output
 
-- No issues found
-
 ```bash
 python qc_openmaterial/main.py -c example_config.xml
 
-2024-06-12 15:14:11,864 - Initializing checks
-2024-06-12 15:14:11,865 - Executing xml checks
-2024-06-12 15:14:11,865 - Executing is_an_xml_document check
-asam.net:openmaterial:0.9.0:is_an_xml_document
-2024-06-12 15:14:11,865 - Issues found - 0
-2024-06-12 15:14:11,865 - Done
-```
-
-- Issues found on file
-
-```bash
-python qc_openmaterial/main.py -c example_config.xml
-
-2024-06-12 15:19:45,139 - Initializing checks
-2024-06-12 15:19:45,140 - Executing xml checks
-2024-06-12 15:19:45,140 - Executing is_an_xml_document check
-asam.net:openmaterial:0.9.0:is_an_xml_document
-2024-06-12 15:19:45,140 - Issues found - 1
-2024-06-12 15:19:45,141 - Done
+2025-01-10 14:43:13,238 - Initializing checks
+2025-01-10 14:43:13,246 - Executing valid_json_document check
+2025-01-10 14:43:13,247 - Done
 
 ```
 
@@ -144,27 +114,13 @@ An example configuration file for using this Checker Bundle within the ASAM Qual
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Config>
 
-    <Param name="InputFile" value="my_openmaterial_file.openmaterial" />
+    <Param name="InputFile" value="my_openmaterial_asset_file.xoma" />
 
-    <CheckerBundle application="openmaterialBundle">
+    <CheckerBundle application="openMaterialBundle">
         <Param name="resultFile" value="openmaterial_bundle_report.xqar" />
-        <Checker checkerId="check_asam_openmaterial_valid_xml_document" maxLevel="1" minLevel="3" />
-        <Checker checkerId="check_asam_openmaterial_root_tag_is_openmaterial" maxLevel="1" minLevel="3" />
-        <Checker checkerId="check_asam_openmaterial_fileheader_is_present" maxLevel="1" minLevel="3" />
+        <Checker checkerId="check_asam_openmaterial_valid_json_document" maxLevel="1" minLevel="3" />
         <Checker checkerId="check_asam_openmaterial_version_is_defined" maxLevel="1" minLevel="3" />
         <Checker checkerId="check_asam_openmaterial_valid_schema" maxLevel="1" minLevel="3" />
-        <Checker checkerId="check_asam_openmaterial_reference_control_uniquely_resolvable_entity_references" maxLevel="1" minLevel="3" />
-        <Checker checkerId="check_asam_openmaterial_reference_control_resolvable_signal_id_in_traffic_signal_state_action" maxLevel="1" minLevel="3" />
-        <Checker checkerId="check_asam_openmaterial_reference_control_resolvable_traffic_signal_controller_by_traffic_signal_controller_ref" maxLevel="1" minLevel="3" />
-        <Checker checkerId="check_asam_openmaterial_reference_control_valid_actor_reference_in_private_actions" maxLevel="1" minLevel="3" />
-        <Checker checkerId="check_asam_openmaterial_reference_control_resolvable_entity_references" maxLevel="1" minLevel="3" />
-        <Checker checkerId="check_asam_openmaterial_reference_control_resolvable_variable_reference" maxLevel="1" minLevel="3" />
-        <Checker checkerId="check_asam_openmaterial_reference_control_resolvable_storyboard_element_reference" maxLevel="1" minLevel="3" />
-        <Checker checkerId="check_asam_openmaterial_reference_control_unique_element_names_on_same_level" maxLevel="1" minLevel="3" />
-        <Checker checkerId="check_asam_openmaterial_parameters_valid_parameter_declaration_in_catalogs" maxLevel="1" minLevel="3" />
-        <Checker checkerId="check_asam_openmaterial_data_type_allowed_operators" maxLevel="1" minLevel="3" />
-        <Checker checkerId="check_asam_openmaterial_data_type_non_negative_transition_time_in_light_state_action" maxLevel="1" minLevel="3" />
-        <Checker checkerId="check_asam_openmaterial_positive_duration_in_phase" maxLevel="1" minLevel="3" />
     </CheckerBundle>
 
     <ReportModule application="TextReport">
