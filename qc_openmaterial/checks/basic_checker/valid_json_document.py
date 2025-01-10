@@ -20,7 +20,7 @@ CHECKER_PRECONDITIONS = set()
 RULE_UID = "asam.net:openmaterial:1.0.0:json.valid_json_document"
 
 
-def is_valid_json(file_path):
+def is_valid_json(file_path: str) -> bool:
     try:
         with open(file_path, "r") as file:
             json.load(file)
@@ -42,7 +42,7 @@ def check_rule(checker_data: models.CheckerData) -> None:
         is_valid = is_valid_json(checker_data.json_file_path)
 
         if not is_valid:
-            issue_id = checker_data.result.register_issue(
+            checker_data.result.register_issue(
                 checker_bundle_name=constants.BUNDLE_NAME,
                 checker_id=CHECKER_ID,
                 description="The input file is not a valid json file.",
@@ -50,7 +50,7 @@ def check_rule(checker_data: models.CheckerData) -> None:
                 rule_uid=RULE_UID,
             )
     else:
-        issue_id = checker_data.result.register_issue(
+        checker_data.result.register_issue(
             checker_bundle_name=constants.BUNDLE_NAME,
             checker_id=CHECKER_ID,
             description="The input file does not exist.",

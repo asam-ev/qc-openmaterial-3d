@@ -5,7 +5,6 @@
 # with this file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 from dataclasses import dataclass
-from lxml import etree
 from typing import Optional
 from enum import Enum
 

@@ -5,7 +5,6 @@
 # with this file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import os
-import pytest
 import test_utils
 from qc_baselib import Result, IssueSeverity, StatusType
 from qc_openmaterial.checks import basic_checker
@@ -13,7 +12,7 @@ from qc_openmaterial.checks import basic_checker
 
 def test_valid_json_document_positive(monkeypatch,) -> None:
     base_path = "tests/data/valid_json_document/"
-    target_file_name = f"json.valid_json_document.positive.xoma"
+    target_file_name = "json.valid_json_document.positive.xoma"
     target_file_path = os.path.join(base_path, target_file_name)
 
     test_utils.create_test_config(target_file_path)
@@ -37,7 +36,7 @@ def test_valid_json_document_positive(monkeypatch,) -> None:
 
 def test_valid_json_document_negative(monkeypatch,) -> None:
     base_path = "tests/data/valid_json_document/"
-    target_file_name = f"json.valid_json_document.negative.xoma"
+    target_file_name = "json.valid_json_document.negative.xoma"
     target_file_path = os.path.join(base_path, target_file_name)
 
     test_utils.create_test_config(target_file_path)
@@ -62,7 +61,7 @@ def test_valid_json_document_negative(monkeypatch,) -> None:
 
 def test_version_is_defined_positive(monkeypatch,) -> None:
     base_path = "tests/data/version_is_defined/"
-    target_file_name = f"version_is_defined.positive.xoma"
+    target_file_name = "version_is_defined.positive.xoma"
     target_file_path = os.path.join(base_path, target_file_name)
 
     test_utils.create_test_config(target_file_path)
@@ -87,7 +86,7 @@ def test_version_is_defined_positive(monkeypatch,) -> None:
 
 def test_version_is_defined_missing_attr(monkeypatch,) -> None:
     base_path = "tests/data/version_is_defined/"
-    target_file_name = f"version_is_defined.negative.xoma"
+    target_file_name = "version_is_defined.negative.xoma"
     target_file_path = os.path.join(base_path, target_file_name)
 
     test_utils.create_test_config(target_file_path)

@@ -11,7 +11,7 @@ import logging
 import json
 import os
 
-from qc_baselib import IssueSeverity, StatusType
+from qc_baselib import IssueSeverity
 
 from qc_openmaterial import constants
 from qc_openmaterial.schemas import schema_files

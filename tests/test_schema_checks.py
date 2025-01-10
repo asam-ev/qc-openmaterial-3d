@@ -5,9 +5,8 @@
 # with this file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import os
-import pytest
 import test_utils
-from qc_baselib import Result, IssueSeverity, StatusType
+from qc_baselib import Result, StatusType
 from qc_openmaterial.checks import schema_checker
 
 
@@ -15,7 +14,7 @@ def test_valid_schema_positive(
     monkeypatch,
 ) -> None:
     base_path = "tests/data/valid_schema/"
-    target_file_name = f"json.valid_schema.positive.xoma"
+    target_file_name = "json.valid_schema.positive.xoma"
     target_file_path = os.path.join(base_path, target_file_name)
 
     test_utils.create_test_config(target_file_path)
@@ -41,7 +40,7 @@ def test_valid_schema_negative(
     monkeypatch,
 ) -> None:
     base_path = "tests/data/valid_schema/"
-    target_file_name = f"json.valid_schema.negative.xoma"
+    target_file_name = "json.valid_schema.negative.xoma"
     target_file_path = os.path.join(base_path, target_file_name)
 
     test_utils.create_test_config(target_file_path)

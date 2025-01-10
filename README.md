@@ -39,7 +39,6 @@ usage: QC OpenMATERIAL 3D Checker [-h] (-d | -c CONFIG_PATH)
 This is a collection of scripts for checking validity of OpenMATERIAL 3D (.xoma, .xomm, .xomp, .xompt) files.
 options:
   -h, --help            show this help message and exit
-  -d, --default_config
   -c CONFIG_PATH, --config_path CONFIG_PATH
 ```
 
@@ -62,6 +61,7 @@ poetry install
 After installing from source, the usage are similar to above.
 
 ```bash
+poetry shell
 qc_openmaterial --help
 python qc_openmaterial/main.py --help
 python -m qc_openmaterial.main --help

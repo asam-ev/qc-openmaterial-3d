@@ -8,7 +8,7 @@
 import logging
 import json
 
-from qc_baselib import IssueSeverity, StatusType
+from qc_baselib import IssueSeverity
 
 from qc_openmaterial import constants
 from qc_openmaterial.checks import models
@@ -36,7 +36,7 @@ def check_rule(checker_data: models.CheckerData) -> None:
 
     # Check if "metadata.openMaterialVersion" exists
     if "metadata" not in data or "openMaterialVersion" not in data["metadata"]:
-        issue_id = checker_data.result.register_issue(
+        checker_data.result.register_issue(
             checker_bundle_name=constants.BUNDLE_NAME,
             checker_id=CHECKER_ID,
             description="Version attributes revMajor-revMinor missing or invalid",

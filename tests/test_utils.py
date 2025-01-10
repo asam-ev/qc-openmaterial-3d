@@ -6,11 +6,9 @@
 
 import os
 import sys
-import pytest
-from typing import List
 import qc_openmaterial.main as main
-from qc_openmaterial import constants, checks
-from qc_baselib import Configuration, Result
+from qc_openmaterial import constants
+from qc_baselib import Configuration
 
 
 CONFIG_FILE_PATH = "bundle_config.xml"

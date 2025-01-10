@@ -6,11 +6,9 @@
 
 import argparse
 import logging
-from datetime import datetime
 import types
 
 from qc_baselib import Configuration, Result, StatusType
-from qc_baselib.models.common import ParamType
 
 from qc_openmaterial import constants
 from qc_openmaterial.checks import schema_checker
@@ -27,7 +25,6 @@ def args_entrypoint() -> argparse.Namespace:
     )
 
     group = parser.add_mutually_exclusive_group(required=True)
-    group.add_argument("-d", "--default_config", action="store_true")
     group.add_argument("-c", "--config_path")
 
     parser.add_argument("-g", "--generate_markdown", action="store_true")
@@ -142,13 +139,6 @@ def run_checks(config: Configuration, result: Result) -> None:
         checker_data,
         required_definition_setting=False,
     )
-
-    # if result.all_checkers_completed_without_issue(
-    #     {basic_checker.valid_json_document.CHECKER_ID}
-    # ):
-    #     checker_data.input_file_xml_root = utils.get_root_without_default_namespace(
-    #         checker_data.json_file_path
-    #     )
 
     execute_checker(
         basic_checker.version_is_defined,

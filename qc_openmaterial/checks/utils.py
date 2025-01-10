@@ -11,13 +11,6 @@ EXPRESSION_PATTERN = re.compile(r"[$][{][ A-Za-z0-9_\+\-\*/%$\(\)\.,]*[\}]")
 PARAMETER_PATTERN = re.compile(r"[$][A-Za-z_][A-Za-z0-9_]*")
 
 
-def to_float(s):
-    try:
-        return float(s)
-    except (ValueError, TypeError):
-        return None
-
-
 def get_open_material_version(json_file_path: str) -> str:
     with open(json_file_path, "r") as file:
         data = json.load(file)
@@ -56,7 +49,7 @@ def compare_versions(version1: str, version2: str) -> int:
         return 0
 
 
-def find_position_in_json(json_data: dict, json_field_path: list) -> (int, int):
+def find_position_in_json(json_data: dict, json_field_path: list) -> tuple[int, int]:
     """
     Find the line and column of a certain field in the JSON data.
 
