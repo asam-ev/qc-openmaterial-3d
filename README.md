@@ -89,7 +89,7 @@ To register this Checker Bundle in Linux, use the [linux_openmaterial_manifest.j
 If the asam-qc-openmaterial is installed in a virtual environment, the `exec_command` needs to be adjusted as follows:
 
 ```json
-"exec_command": "source <venv>/bin/activate && cd $ASAM_QC_FRAMEWORK_WORKING_DIR && qc_openmaterial -c $ASAM_QC_FRAMEWORK_CONFIG_FILE"
+"exec_command": ". <venv>/bin/activate && cd $ASAM_QC_FRAMEWORK_WORKING_DIR && qc_openmaterial -c $ASAM_QC_FRAMEWORK_CONFIG_FILE"
 ```
 
 Replace `<venv>/bin/activate` by the path to your virtual environment.
