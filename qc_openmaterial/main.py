@@ -164,34 +164,32 @@ def main():
 
     logging.info("Initializing checks")
 
-    if args.default_config:
-        raise RuntimeError("Not implemented.")
-    else:
-        config = Configuration()
-        config.load_from_file(xml_file_path=args.config_path)
 
-        result = Result()
-        result.register_checker_bundle(
-            name=constants.BUNDLE_NAME,
-            description="OpenMATERIAL 3D Checker Bundle",
-            version=constants.BUNDLE_VERSION,
-            summary="",
-        )
-        result.set_result_version(version=constants.BUNDLE_VERSION)
+    config = Configuration()
+    config.load_from_file(xml_file_path=args.config_path)
 
-        run_checks(config, result)
+    result = Result()
+    result.register_checker_bundle(
+        name=constants.BUNDLE_NAME,
+        description="OpenMATERIAL 3D Checker Bundle",
+        version=constants.BUNDLE_VERSION,
+        summary="",
+    )
+    result.set_result_version(version=constants.BUNDLE_VERSION)
 
-        result.copy_param_from_config(config)
+    run_checks(config, result)
 
-        result.write_to_file(
-            config.get_checker_bundle_param(
-                checker_bundle_name=constants.BUNDLE_NAME, param_name="resultFile"
-            ),
-            generate_summary=True,
-        )
+    result.copy_param_from_config(config)
 
-        if args.generate_markdown:
-            result.write_markdown_doc("generated_checker_bundle_doc.md")
+    result.write_to_file(
+        config.get_checker_bundle_param(
+            checker_bundle_name=constants.BUNDLE_NAME, param_name="resultFile"
+        ),
+        generate_summary=True,
+    )
+
+    if args.generate_markdown:
+        result.write_markdown_doc("generated_checker_bundle_doc.md")
 
     logging.info("Done")
 
