@@ -14,10 +14,10 @@ from qc_baselib import IssueSeverity
 from qc_openmaterial import constants
 from qc_openmaterial.checks import models
 
-CHECKER_ID = "check_asam.net:xom:1.0.0:general.valid-json-document"
+CHECKER_ID = "check_asam.net:xom:1.0.0:general.valid_json_document"
 CHECKER_DESCRIPTION = "The given file to check must be a valid JSON document."
 CHECKER_PRECONDITIONS = set()
-RULE_UID = "asam.net:xom:1.0.0:general.valid-json-document"
+RULE_UID = "asam.net:xom:1.0.0:general.valid_json_document"
 
 
 def is_valid_json(file_path: str) -> bool:
