@@ -22,13 +22,13 @@ from qc_openmaterial.checks.basic_checker import (
     version_is_defined,
 )
 
-CHECKER_ID = "check_asam_openmaterial_valid_schema"
+CHECKER_ID = "check_asam.net:xom:1.0.0:general.valid_schema"
 CHECKER_DESCRIPTION = "Input JSON file must be valid according to the corresponding schema."
 CHECKER_PRECONDITIONS = {
     valid_json_document.CHECKER_ID,
     version_is_defined.CHECKER_ID,
 }
-RULE_UID = "asam.net:openmaterial:1.0.0:json.valid_schema"
+RULE_UID = "asam.net:xom:1.0.0:general.valid_schema"
 
 
 def get_schema_file(version: str, file_path: str) -> str:
