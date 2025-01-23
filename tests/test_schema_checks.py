@@ -30,7 +30,7 @@ def test_valid_schema_positive(
     )
 
     assert (
-        len(result.get_issues_by_rule_uid("asam.net:xom:1.0.0:general.valid-schema")) == 0
+        len(result.get_issues_by_rule_uid("asam.net:xom:1.0.0:general.valid_schema")) == 0
     )
 
     test_utils.cleanup_files()
@@ -56,6 +56,6 @@ def test_valid_schema_negative(
     )
 
     assert (
-        len(result.get_issues_by_rule_uid("asam.net:xom:1.0.0:general.valid-schema")) == 1
+        len(result.get_issues_by_rule_uid("asam.net:xom:1.0.0:general.valid_schema")) == 1
     )
     test_utils.cleanup_files()
