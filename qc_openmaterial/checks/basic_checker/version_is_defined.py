@@ -17,12 +17,12 @@ from qc_openmaterial.checks.basic_checker import (
     valid_json_document,
 )
 
-CHECKER_ID = "check_asam_openmaterial_version_is_defined"
+CHECKER_ID = "check_asam.net:xom:1.0.0:general.version-is-defined"
 CHECKER_DESCRIPTION = "The metadata of the file must contain an openMaterialVersion field."
 CHECKER_PRECONDITIONS = {
     valid_json_document.CHECKER_ID
 }
-RULE_UID = "asam.net:openmaterial:1.0.0:json.version_is_defined"
+RULE_UID = "asam.net:xom:1.0.0:general.version-is-defined"
 
 
 def check_rule(checker_data: models.CheckerData) -> None:

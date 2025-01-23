@@ -27,7 +27,7 @@ def test_valid_json_document_positive(monkeypatch,) -> None:
             == StatusType.COMPLETED
     )
     assert (
-            len(result.get_issues_by_rule_uid("asam.net:openmaterial:1.0.0:json.valid_json_document"))
+            len(result.get_issues_by_rule_uid("asam.net:xom:1.0.0:general.valid-json-document"))
             == 0
     )
 
@@ -52,7 +52,7 @@ def test_valid_json_document_negative(monkeypatch,) -> None:
     )
 
     json_doc_issues = result.get_issues_by_rule_uid(
-        "asam.net:openmaterial:1.0.0:json.valid_json_document"
+        "asam.net:xom:1.0.0:general.valid-json-document"
     )
     assert len(json_doc_issues) == 1
     assert json_doc_issues[0].level == IssueSeverity.ERROR
@@ -77,7 +77,7 @@ def test_version_is_defined_positive(monkeypatch,) -> None:
     )
 
     assert (
-            len(result.get_issues_by_rule_uid("asam.net:openmaterial:1.0.0:json.version_is_defined"))
+            len(result.get_issues_by_rule_uid("asam.net:xom:1.0.0:general.version-is-defined"))
             == 0
     )
 
@@ -102,7 +102,7 @@ def test_version_is_defined_missing_attr(monkeypatch,) -> None:
     )
 
     json_doc_issues = result.get_issues_by_rule_uid(
-        "asam.net:openmaterial:1.0.0:json.version_is_defined"
+        "asam.net:xom:1.0.0:general.version-is-defined"
     )
     assert len(json_doc_issues) == 1
     assert json_doc_issues[0].level == IssueSeverity.ERROR
