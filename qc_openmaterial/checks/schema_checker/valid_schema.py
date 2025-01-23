@@ -88,11 +88,12 @@ def check_rule(checker_data: models.CheckerData) -> None:
 
         error_path = list(error.absolute_path)
         line, column = utils.find_position_in_json(data, error_path)
-        checker_data.result.add_file_location(
-            checker_bundle_name=constants.BUNDLE_NAME,
-            checker_id=CHECKER_ID,
-            issue_id=issue_id,
-            row=line,
-            column=column,
-            description=error.message,
-        )
+        if line and column:
+            checker_data.result.add_file_location(
+                checker_bundle_name=constants.BUNDLE_NAME,
+                checker_id=CHECKER_ID,
+                issue_id=issue_id,
+                row=line,
+                column=column,
+                description=error.message,
+            )
