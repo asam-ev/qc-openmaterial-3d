@@ -17,16 +17,16 @@ from qc_openmaterial3d import constants
 from qc_openmaterial3d.schemas import schema_files
 from qc_openmaterial3d.checks import utils, models
 
-from qc_openmaterial3d.checks.basic_checker import (
-    valid_json_document,
-    version_is_defined,
+from qc_openmaterial3d.checks.xom_general_checker import (
+    general_valid_json_document,
+    general_version_is_defined,
 )
 
 CHECKER_ID = "check_asam.net:xom:1.0.0:general.valid_schema"
 CHECKER_DESCRIPTION = "Input JSON file must be valid according to the corresponding schema."
 CHECKER_PRECONDITIONS = {
-    valid_json_document.CHECKER_ID,
-    version_is_defined.CHECKER_ID,
+    general_valid_json_document.CHECKER_ID,
+    general_version_is_defined.CHECKER_ID,
 }
 RULE_UID = "asam.net:xom:1.0.0:general.valid_schema"
 
