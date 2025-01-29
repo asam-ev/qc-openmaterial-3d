@@ -10,10 +10,10 @@ import json
 
 from qc_baselib import IssueSeverity
 
-from qc_openmaterial import constants
-from qc_openmaterial.checks import models
+from qc_openmaterial3d import constants
+from qc_openmaterial3d.checks import models
 
-from qc_openmaterial.checks.basic_checker import (
+from qc_openmaterial3d.checks.basic_checker import (
     valid_json_document,
 )
 

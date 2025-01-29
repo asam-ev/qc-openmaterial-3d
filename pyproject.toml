@@ -1,12 +1,12 @@
 [tool.poetry]
-name = "asam-qc-openmaterial"
+name = "asam-qc-openmaterial-3d"
 version = "1.0.0"
 description = "This project implements ASAM OpenMATERIAL 3D quality checker."
 authors = ["Clemens Linnhoff <clemens.linnhoff@persival.de>"]
 license = "MPL-2.0"
 readme = "README.md"
 packages = [
-    { include = "qc_openmaterial" },
+    { include = "qc_openmaterial3d" },
 ]
 
 
@@ -21,7 +21,7 @@ pytest = "^8.2.2"
 black = "^24.4.2"
 
 [tool.poetry.scripts]
-qc_openmaterial = 'qc_openmaterial.main:main'
+qc_openmaterial = 'qc_openmaterial3d.main:main'
 
 [build-system]
 requires = ["poetry-core"]

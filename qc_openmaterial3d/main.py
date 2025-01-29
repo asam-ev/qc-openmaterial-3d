@@ -10,17 +10,17 @@ import types
 
 from qc_baselib import Configuration, Result, StatusType
 
-from qc_openmaterial import constants
-from qc_openmaterial.checks import schema_checker
-from qc_openmaterial.checks import basic_checker
-from qc_openmaterial.checks import utils, models
+from qc_openmaterial3d import constants
+from qc_openmaterial3d.checks import schema_checker
+from qc_openmaterial3d.checks import basic_checker
+from qc_openmaterial3d.checks import utils, models
 
 logging.basicConfig(format="%(asctime)s - %(message)s", level=logging.INFO)
 
 
 def args_entrypoint() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        prog="QC OpenMATERIAL 3D Checker",
+        prog="ASAM OpenMATERIAL 3D Checker Bundle",
         description="This is a collection of scripts for checking validity of OpenMATERIAL 3D (.xoma, .xomm, .xomp, .xompt) files.",
     )
 
