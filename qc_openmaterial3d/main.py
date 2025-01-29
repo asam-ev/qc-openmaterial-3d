@@ -154,8 +154,9 @@ def run_checks(config: Configuration, result: Result) -> None:
     ):
         checker_data.schema_version = utils.get_open_material_version(checker_data.json_file_path)
 
-    # 2. Run schema check
+    # Run further xom:general checker
     execute_checker(xom_general_checker.valid_schema, checker_data)
+    execute_checker(xom_general_checker.uris_exist, checker_data)
 
 
 def main():

@@ -7,3 +7,4 @@
 from . import general_valid_json_document as valid_json_document
 from . import general_version_is_defined as version_is_defined
 from . import general_valid_schema as valid_schema
+from . import general_uris_exist as uris_exist

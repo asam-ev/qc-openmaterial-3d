@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<Config>
+  <Param name="InputFile" value="tests/data/valid_schema/json.valid_schema.negative.xomp"/>
+  <CheckerBundle application="xomBundle">
+    <Param name="resultFile" value="xom_bundle_report.xqar"/>
+  </CheckerBundle>
+</Config>

@@ -157,3 +157,103 @@ def test_valid_schema_negative(
         len(result.get_issues_by_rule_uid("asam.net:xom:1.0.0:general.valid_schema")) == 1
     )
     test_utils.cleanup_files()
+
+
+def test_valid_schema_xomp_negative(
+    monkeypatch,
+) -> None:
+    base_path = "tests/data/valid_schema/"
+    target_file_name = "json.valid_schema.negative.xomp"
+    target_file_path = os.path.join(base_path, target_file_name)
+
+    test_utils.create_test_config(target_file_path)
+
+    test_utils.launch_main(monkeypatch)
+
+    result = Result()
+    result.load_from_file(test_utils.REPORT_FILE_PATH)
+
+    assert (
+        result.get_checker_status(xom_general_checker.valid_schema.CHECKER_ID)
+        == StatusType.COMPLETED
+    )
+
+    assert (
+        len(result.get_issues_by_rule_uid("asam.net:xom:1.0.0:general.valid_schema")) == 1
+    )
+    test_utils.cleanup_files()
+
+
+def test_uris_exist_xoma_positive(
+    monkeypatch,
+) -> None:
+    base_path = "tests/data/uris_exist/"
+    target_file_name = "uris_exist.positive.xoma"
+    target_file_path = os.path.join(base_path, target_file_name)
+
+    test_utils.create_test_config(target_file_path)
+
+    test_utils.launch_main(monkeypatch)
+
+    result = Result()
+    result.load_from_file(test_utils.REPORT_FILE_PATH)
+
+    assert (
+        result.get_checker_status(xom_general_checker.uris_exist.CHECKER_ID)
+        == StatusType.COMPLETED
+    )
+
+    assert (
+        len(result.get_issues_by_rule_uid("asam.net:xom:1.0.0:general.uris_exist")) == 0
+    )
+    test_utils.cleanup_files()
+
+
+def test_uris_exist_xoma_negative(
+    monkeypatch,
+) -> None:
+    base_path = "tests/data/uris_exist/"
+    target_file_name = "uris_exist.negative.xoma"
+    target_file_path = os.path.join(base_path, target_file_name)
+
+    test_utils.create_test_config(target_file_path)
+
+    test_utils.launch_main(monkeypatch)
+
+    result = Result()
+    result.load_from_file(test_utils.REPORT_FILE_PATH)
+
+    assert (
+        result.get_checker_status(xom_general_checker.uris_exist.CHECKER_ID)
+        == StatusType.COMPLETED
+    )
+
+    assert (
+        len(result.get_issues_by_rule_uid("asam.net:xom:1.0.0:general.uris_exist")) == 1
+    )
+    test_utils.cleanup_files()
+
+
+def test_uris_exist_xomp_negative(
+    monkeypatch,
+) -> None:
+    base_path = "tests/data/uris_exist/"
+    target_file_name = "uris_exist.negative.xomp"
+    target_file_path = os.path.join(base_path, target_file_name)
+
+    test_utils.create_test_config(target_file_path)
+
+    test_utils.launch_main(monkeypatch)
+
+    result = Result()
+    result.load_from_file(test_utils.REPORT_FILE_PATH)
+
+    assert (
+        result.get_checker_status(xom_general_checker.uris_exist.CHECKER_ID)
+        == StatusType.COMPLETED
+    )
+
+    assert (
+        len(result.get_issues_by_rule_uid("asam.net:xom:1.0.0:general.uris_exist")) == 5
+    )
+    test_utils.cleanup_files()
