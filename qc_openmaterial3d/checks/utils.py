@@ -1,5 +1,6 @@
 # SPDX-License-Identifier: MPL-2.0
 # Copyright 2024, ASAM e.V.
+# Copyright 2025, Persival GmbH
 # This Source Code Form is subject to the terms of the Mozilla
 # Public License, v. 2.0. If a copy of the MPL was not distributed
 # with this file, You can obtain one at https://mozilla.org/MPL/2.0/.
@@ -49,39 +50,6 @@ def compare_versions(version1: str, version2: str) -> int:
         return 0
 
 
-def find_position_in_json(json_data: dict, json_field_path: list) -> tuple[int, int]:
-    """
-    Find the line and column of a certain field in the JSON data.
-
-    Args:
-        json_data (dict): Json data to find the position of the json_field_path in
-        json_field_path (list): List of field hierarchy, e.g. ['metadata', 'fieldToFind']
-
-    Returns:
-        line, column
-    """
-    json_string = json.dumps(json_data, indent=4)
-    lines = json_string.splitlines()
-
-    # Traverse JSON data to resolve the error path
-    current_data = json_data
-    for key in json_field_path:
-        if isinstance(current_data, list) and isinstance(key, int):
-            current_data = current_data[key]
-        elif isinstance(current_data, dict) and key in current_data:
-            current_data = current_data[key]
-        else:
-            return None, None  # Invalid path, cannot find position
-
-    # Find the serialized value's position in the JSON string
-    serialized_value = json.dumps(current_data)
-    for i, line in enumerate(lines):
-        if serialized_value in line:
-            return i + 1, line.find(serialized_value) + 1
-
-    return None, None
-
-
 def recursive_search(hierarchy, lines, current_line):
     """
     Recursively traverses the JSON structure based on the property hierarchy.
@@ -103,7 +71,7 @@ def recursive_search(hierarchy, lines, current_line):
             if len(hierarchy) == 1:
                 return current_line + line_num
             else:
-                return recursive_search(hierarchy[1:], lines[line_num:], current_line + line_num + 1)
+                return recursive_search(hierarchy[1:], lines[line_num:], current_line + line_num)
 
     return -1
 
