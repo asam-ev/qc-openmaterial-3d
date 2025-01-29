@@ -7,7 +7,7 @@
 import os
 import test_utils
 from qc_baselib import Result, IssueSeverity, StatusType
-from qc_openmaterial.checks import basic_checker
+from qc_openmaterial3d.checks import basic_checker
 
 
 def test_valid_json_document_positive(monkeypatch,) -> None:

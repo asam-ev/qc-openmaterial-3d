@@ -11,8 +11,8 @@ import json
 from pathlib import Path
 
 from qc_baselib import IssueSeverity
-from qc_openmaterial import constants
-from qc_openmaterial.checks import models
+from qc_openmaterial3d import constants
+from qc_openmaterial3d.checks import models
 
 CHECKER_ID = "check_asam.net:xom:1.0.0:general.valid_json_document"
 CHECKER_DESCRIPTION = "The given file to check must be a valid JSON document."

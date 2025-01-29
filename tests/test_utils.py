@@ -6,8 +6,8 @@
 
 import os
 import sys
-import qc_openmaterial.main as main
-from qc_openmaterial import constants
+import qc_openmaterial3d.main as main
+from qc_openmaterial3d import constants
 from qc_baselib import Configuration
 
 

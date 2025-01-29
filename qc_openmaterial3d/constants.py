@@ -5,5 +5,5 @@
 # Public License, v. 2.0. If a copy of the MPL was not distributed
 # with this file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-BUNDLE_NAME = "openMaterialBundle"
+BUNDLE_NAME = "xomBundle"
 BUNDLE_VERSION = "v1.0.0-rc.1"

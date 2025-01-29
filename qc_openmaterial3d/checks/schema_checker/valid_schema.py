@@ -13,11 +13,11 @@ import os
 
 from qc_baselib import IssueSeverity
 
-from qc_openmaterial import constants
-from qc_openmaterial.schemas import schema_files
-from qc_openmaterial.checks import utils, models
+from qc_openmaterial3d import constants
+from qc_openmaterial3d.schemas import schema_files
+from qc_openmaterial3d.checks import utils, models
 
-from qc_openmaterial.checks.basic_checker import (
+from qc_openmaterial3d.checks.basic_checker import (
     valid_json_document,
     version_is_defined,
 )
@@ -68,7 +68,7 @@ def check_rule(checker_data: models.CheckerData) -> None:
     schema_version = checker_data.schema_version
     schema_path = get_schema_file(schema_version, checker_data.json_file_path)
     schema_file_path = str(
-        importlib.resources.files("qc_openmaterial.schemas").joinpath(schema_path)
+        importlib.resources.files("qc_openmaterial3d.schemas").joinpath(schema_path)
     )
 
     with open(schema_file_path, "r") as file:

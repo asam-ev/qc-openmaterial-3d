@@ -1,9 +1,9 @@
-# asam-qc-openmaterial
+# ASAM QC OpenMATERIAL 3D
 
 This repository provides a [Checker Bundle](checker_bundle_doc.md) designed for the [ASAM Quality Checker Framework](https://github.com/asam-ev/qc-framework).
 It tests ASAM OpenMATERIAL 3D files for conformity with the standard.
 
-- [asam-qc-openmaterial](#asam-qc-openmaterial)
+- [qc_openmaterial3d](#qc_openmaterial3d)
   - [Installation and usage](#installation-and-usage)
     - [Installation using pip](#installation-using-pip)
     - [Installation from source](#installation-from-source)
@@ -18,24 +18,24 @@ It tests ASAM OpenMATERIAL 3D files for conformity with the standard.
 
 ## Installation and usage
 
-asam-qc-openmaterial can be installed using pip or from source.
+qc_openmaterial3d can be installed using pip or from source.
 
 ### Installation using pip
 
-asam-qc-openmaterial can be installed using pip.
+qc_openmaterial3d can be installed using pip.
 
 **From a local repository**
 
 ```bash
-git clone https://github.com/Persival-GmbH/qc-openmaterial.git
-pip install ./qc-openmaterial
+git clone https://github.com/Persival-GmbH/qc-openmaterial-3d.git
+pip install ./qc-openmaterial-3d
 ```
 
 To run the application:
 
 ```bash
-qc_openmaterial --help
-usage: QC OpenMATERIAL 3D Checker [-h] (-d | -c CONFIG_PATH)
+qc_openmaterial3d --help
+usage: QC OpenMATERIAL 3D Checker Bundle [-h] (-d | -c CONFIG_PATH)
 This is a collection of scripts for checking validity of OpenMATERIAL 3D (.xoma, .xomm, .xomp, .xompt) files.
 options:
   -h, --help            show this help message and exit
@@ -45,9 +45,9 @@ options:
 The following commands are equivalent:
 
 ```bash
-qc_openmaterial --help
-python qc_openmaterial/main.py --help
-python -m qc_openmaterial.main --help
+qc_openmaterial3d --help
+python qc_openmaterial3d/main.py --help
+python -m qc_openmaterial3d.main --help
 ```
 
 ### Installation using poetry
@@ -62,15 +62,15 @@ After installing from source, the usage are similar to above.
 
 ```bash
 poetry shell
-qc_openmaterial --help
-python qc_openmaterial/main.py --help
-python -m qc_openmaterial.main --help
+qc_openmaterial3d --help
+python qc_openmaterial3d/main.py --help
+python -m qc_openmaterial3d.main --help
 ```
 
 ### Example output
 
 ```bash
-python qc_openmaterial/main.py -c example_config.xml
+python qc_openmaterial3d/main.py -c example_config.xml
 
 2025-01-10 14:43:13,238 - Initializing checks
 2025-01-10 14:43:13,246 - Executing valid_json_document check
@@ -86,10 +86,10 @@ Manifest file templates are provided in the [manifest_templates](manifest_templa
 
 To register this Checker Bundle in Linux, use the [linux_openmaterial_manifest.json](manifest_templates/linux_openmaterial_manifest.json) template file.
 
-If the asam-qc-openmaterial is installed in a virtual environment, the `exec_command` needs to be adjusted as follows:
+If the qc_openmaterial3d is installed in a virtual environment, the `exec_command` needs to be adjusted as follows:
 
 ```json
-"exec_command": ". <venv>/bin/activate && cd $ASAM_QC_FRAMEWORK_WORKING_DIR && qc_openmaterial -c $ASAM_QC_FRAMEWORK_CONFIG_FILE"
+"exec_command": ". <venv>/bin/activate && cd $ASAM_QC_FRAMEWORK_WORKING_DIR && qc_openmaterial3d -c $ASAM_QC_FRAMEWORK_CONFIG_FILE"
 ```
 
 Replace `<venv>/bin/activate` by the path to your virtual environment.
@@ -98,10 +98,10 @@ Replace `<venv>/bin/activate` by the path to your virtual environment.
 
 To register this Checker Bundle in Windows, use the [windows_openmaterial_manifest.json](manifest_templates/windows_openmaterial_manifest.json) template file.
 
-If the asam-qc-openmaterial is installed in a virtual environment, the `exec_command` needs to be adjusted as follows:
+If the qc_openmaterial3d is installed in a virtual environment, the `exec_command` needs to be adjusted as follows:
 
 ```json
-"exec_command": "C:\\> <venv>\\Scripts\\activate.bat && cd %ASAM_QC_FRAMEWORK_WORKING_DIR% && qc_openmaterial -c %ASAM_QC_FRAMEWORK_CONFIG_FILE%"
+"exec_command": "C:\\> <venv>\\Scripts\\activate.bat && cd %ASAM_QC_FRAMEWORK_WORKING_DIR% && qc_openmaterial3d -c %ASAM_QC_FRAMEWORK_CONFIG_FILE%"
 ```
 
 Replace `C:\\> <venv>\\Scripts\\activate.bat` by the path to your virtual environment.
@@ -194,7 +194,7 @@ def check_rule(checker_data: models.CheckerData) -> None:
     pass
 ```
 
-1. Register the checker module in the following function in [main.py](qc_openmaterial/main.py).
+1. Register the checker module in the following function in [main.py](qc_openmaterial3d/main.py).
 
 ```python
 def run_checks(config: Configuration, result: Result) -> None:

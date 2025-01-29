@@ -7,7 +7,7 @@
 import os
 import test_utils
 from qc_baselib import Result, StatusType
-from qc_openmaterial.checks import schema_checker
+from qc_openmaterial3d.checks import schema_checker
 
 
 def test_valid_schema_positive(

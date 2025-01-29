@@ -3,7 +3,7 @@
 
     <Param name="InputFile" value="/path/to/example_asset.xoma" />
 
-    <CheckerBundle application="openMaterialBundle">
+    <CheckerBundle application="xomBundle">
         <Param name="resultFile" value="xom_bundle_report.xqar" />
         <Checker checkerId="check_asam.net:xom:1.0.0:general.valid_json_document" maxLevel="1" minLevel="3" />
         <Checker checkerId="check_asam.net:xom:1.0.0:general.version_is_defined" maxLevel="1" minLevel="3" />
