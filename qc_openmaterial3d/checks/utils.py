@@ -80,3 +80,52 @@ def find_position_in_json(json_data: dict, json_field_path: list) -> tuple[int, 
             return i + 1, line.find(serialized_value) + 1
 
     return None, None
+
+
+def recursive_search(hierarchy, lines, current_line):
+    """
+    Recursively traverses the JSON structure based on the property hierarchy.
+
+    Args:
+        hierarchy (list): The remaining parts of the property hierarchy to search for.
+        lines (list): All lines of the JSON file.
+        current_line (int): The current line number in the JSON file.
+
+    Returns:
+        int: The line number of the property if found, otherwise -1.
+    """
+    if not hierarchy:
+        return current_line
+
+    for line_num, line in enumerate(lines):
+        # Start by checking if the current line corresponds to the first property in the hierarchy
+        if f'"{hierarchy[0]}"' in line:
+            if len(hierarchy) == 1:
+                return current_line + line_num
+            else:
+                return recursive_search(hierarchy[1:], lines[line_num:], current_line + line_num + 1)
+
+    return -1
+
+
+def find_property_line(json_file_path, property_hierarchy) -> int | None:
+    """
+    Finds the line number of a specific property in a JSON file.
+
+    Args:
+        json_file_path (str): Path to the JSON file.
+        property_hierarchy (list): List of properties (e.g., ['materialProperties', 'surfaceRoughness']).
+
+    Returns:
+        int: The line number where the property is located, or -1 if not found.
+    """
+    with open(json_file_path, "r") as file:
+        lines = file.readlines()
+
+        # Traverse the file line by line to match the hierarchical property
+        for line_num, line in enumerate(lines):
+            # Start by checking if the current line corresponds to the first property in the hierarchy
+            if f'"{property_hierarchy[0]}"' in line:
+                return recursive_search(property_hierarchy[1:], lines[line_num:], line_num + 1)
+
+    return None  # If the property was not found
