@@ -21,6 +21,14 @@ RULE_UID = "asam.net:xom:1.0.0:general.valid_json_document"
 
 
 def is_valid_json(file_path: str) -> bool:
+    """Checks if a file contains valid JSON.
+
+    Args:
+        file_path: Path to the JSON file.
+
+    Returns:
+        True if the file contains valid JSON, False otherwise.
+    """
     try:
         with open(file_path, "r") as file:
             json.load(file)
@@ -32,8 +40,11 @@ def is_valid_json(file_path: str) -> bool:
 def check_rule(checker_data: models.CheckerData) -> None:
     """
     Implements a rule to check if input file is a valid json document
+
+    Args:
+        checker_data: Checker data object used to raise issues
     """
-    logging.info("Executing valid_json_document check")
+    logging.info(f"Executing {CHECKER_ID}")
 
     # Check the precondition (whether the input file exists).
     file_path = Path(checker_data.json_file_path)

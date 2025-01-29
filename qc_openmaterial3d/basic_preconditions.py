@@ -5,15 +5,13 @@
 # Public License, v. 2.0. If a copy of the MPL was not distributed
 # with this file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-from qc_openmaterial3d.checks.basic_checker import (
-    valid_json_document,
-    version_is_defined,
+from qc_openmaterial3d.checks.xom_general_checker import (
+    general_valid_json_document,
+    general_version_is_defined, general_valid_schema,
 )
 
-from qc_openmaterial3d.checks.schema_checker import valid_schema
-
 CHECKER_PRECONDITIONS = {
-    valid_json_document.CHECKER_ID,
-    version_is_defined.CHECKER_ID,
-    valid_schema.CHECKER_ID,
+    general_valid_json_document.CHECKER_ID,
+    general_version_is_defined.CHECKER_ID,
+    general_valid_schema.CHECKER_ID,
 }

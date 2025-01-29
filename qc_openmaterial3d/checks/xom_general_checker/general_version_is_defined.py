@@ -13,14 +13,14 @@ from qc_baselib import IssueSeverity
 from qc_openmaterial3d import constants
 from qc_openmaterial3d.checks import models
 
-from qc_openmaterial3d.checks.basic_checker import (
-    valid_json_document,
+from qc_openmaterial3d.checks.xom_general_checker import (
+    general_valid_json_document,
 )
 
 CHECKER_ID = "check_asam.net:xom:1.0.0:general.version_is_defined"
 CHECKER_DESCRIPTION = "The metadata of the file must contain an openMaterialVersion field."
 CHECKER_PRECONDITIONS = {
-    valid_json_document.CHECKER_ID
+    general_valid_json_document.CHECKER_ID
 }
 RULE_UID = "asam.net:xom:1.0.0:general.version_is_defined"
 
@@ -28,8 +28,11 @@ RULE_UID = "asam.net:xom:1.0.0:general.version_is_defined"
 def check_rule(checker_data: models.CheckerData) -> None:
     """
     The metadata of the file must contain an openMaterialVersion field.
+
+    Args:
+        checker_data: Checker data object used to raise issues
     """
-    logging.info("Executing version_is_defined check")
+    logging.info(f"Executing {CHECKER_ID}")
 
     with open(checker_data.json_file_path, "r") as file:
         data = json.load(file)

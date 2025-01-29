@@ -1,5 +1,6 @@
 # SPDX-License-Identifier: MPL-2.0
 # Copyright 2024, ASAM e.V.
+# Copyright 2025, Persival GmbH
 # This Source Code Form is subject to the terms of the Mozilla
 # Public License, v. 2.0. If a copy of the MPL was not distributed
 # with this file, You can obtain one at https://mozilla.org/MPL/2.0/.
@@ -49,34 +50,50 @@ def compare_versions(version1: str, version2: str) -> int:
         return 0
 
 
-def find_position_in_json(json_data: dict, json_field_path: list) -> tuple[int, int]:
+def recursive_search(hierarchy, lines, current_line):
     """
-    Find the line and column of a certain field in the JSON data.
+    Recursively traverses the JSON structure based on the property hierarchy.
 
     Args:
-        json_data (dict): Json data to find the position of the json_field_path in
-        json_field_path (list): List of field hierarchy, e.g. ['metadata', 'fieldToFind']
+        hierarchy (list): The remaining parts of the property hierarchy to search for.
+        lines (list): All lines of the JSON file.
+        current_line (int): The current line number in the JSON file.
 
     Returns:
-        line, column
+        int: The line number of the property if found, otherwise -1.
     """
-    json_string = json.dumps(json_data, indent=4)
-    lines = json_string.splitlines()
+    if not hierarchy:
+        return current_line
 
-    # Traverse JSON data to resolve the error path
-    current_data = json_data
-    for key in json_field_path:
-        if isinstance(current_data, list) and isinstance(key, int):
-            current_data = current_data[key]
-        elif isinstance(current_data, dict) and key in current_data:
-            current_data = current_data[key]
-        else:
-            return None, None  # Invalid path, cannot find position
+    for line_num, line in enumerate(lines):
+        # Start by checking if the current line corresponds to the first property in the hierarchy
+        if f'"{hierarchy[0]}"' in line:
+            if len(hierarchy) == 1:
+                return current_line + line_num
+            else:
+                return recursive_search(hierarchy[1:], lines[line_num:], current_line + line_num)
 
-    # Find the serialized value's position in the JSON string
-    serialized_value = json.dumps(current_data)
-    for i, line in enumerate(lines):
-        if serialized_value in line:
-            return i + 1, line.find(serialized_value) + 1
+    return -1
 
-    return None, None
+
+def find_property_line(json_file_path, property_hierarchy) -> int | None:
+    """
+    Finds the line number of a specific property in a JSON file.
+
+    Args:
+        json_file_path (str): Path to the JSON file.
+        property_hierarchy (list): List of properties (e.g., ['materialProperties', 'surfaceRoughness']).
+
+    Returns:
+        int: The line number where the property is located, or -1 if not found.
+    """
+    with open(json_file_path, "r") as file:
+        lines = file.readlines()
+
+        # Traverse the file line by line to match the hierarchical property
+        for line_num, line in enumerate(lines):
+            # Start by checking if the current line corresponds to the first property in the hierarchy
+            if f'"{property_hierarchy[0]}"' in line:
+                return recursive_search(property_hierarchy[1:], lines[line_num:], line_num + 1)
+
+    return None  # If the property was not found

@@ -12,7 +12,7 @@ from qc_baselib import Configuration
 
 
 CONFIG_FILE_PATH = "bundle_config.xml"
-REPORT_FILE_PATH = "openmaterial_bundle_report.xqar"
+REPORT_FILE_PATH = "xom_bundle_report.xqar"
 
 
 def create_test_config(target_file_path: str):

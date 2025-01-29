@@ -11,8 +11,7 @@ import types
 from qc_baselib import Configuration, Result, StatusType
 
 from qc_openmaterial3d import constants
-from qc_openmaterial3d.checks import schema_checker
-from qc_openmaterial3d.checks import basic_checker
+from qc_openmaterial3d.checks import xom_general_checker
 from qc_openmaterial3d.checks import utils, models
 
 logging.basicConfig(format="%(asctime)s - %(message)s", level=logging.INFO)
@@ -135,13 +134,13 @@ def run_checks(config: Configuration, result: Result) -> None:
 
     # 1. Run basic checks
     execute_checker(
-        basic_checker.valid_json_document,
+        xom_general_checker.valid_json_document,
         checker_data,
         required_definition_setting=False,
     )
 
     execute_checker(
-        basic_checker.version_is_defined,
+        xom_general_checker.version_is_defined,
         checker_data,
         required_definition_setting=False,
     )
@@ -149,14 +148,15 @@ def run_checks(config: Configuration, result: Result) -> None:
     # Get schema version if file and version exist
     if result.all_checkers_completed_without_issue(
         {
-            basic_checker.valid_json_document.CHECKER_ID,
-            basic_checker.version_is_defined.CHECKER_ID,
+            xom_general_checker.valid_json_document.CHECKER_ID,
+            xom_general_checker.version_is_defined.CHECKER_ID,
         }
     ):
         checker_data.schema_version = utils.get_open_material_version(checker_data.json_file_path)
 
-    # 2. Run schema check
-    execute_checker(schema_checker.valid_schema, checker_data)
+    # Run further xom:general checker
+    execute_checker(xom_general_checker.valid_schema, checker_data)
+    execute_checker(xom_general_checker.uris_exist, checker_data)
 
 
 def main():

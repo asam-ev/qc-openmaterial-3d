@@ -17,21 +17,33 @@ from qc_openmaterial3d import constants
 from qc_openmaterial3d.schemas import schema_files
 from qc_openmaterial3d.checks import utils, models
 
-from qc_openmaterial3d.checks.basic_checker import (
-    valid_json_document,
-    version_is_defined,
+from qc_openmaterial3d.checks.xom_general_checker import (
+    general_valid_json_document,
+    general_version_is_defined,
 )
 
 CHECKER_ID = "check_asam.net:xom:1.0.0:general.valid_schema"
 CHECKER_DESCRIPTION = "Input JSON file must be valid according to the corresponding schema."
 CHECKER_PRECONDITIONS = {
-    valid_json_document.CHECKER_ID,
-    version_is_defined.CHECKER_ID,
+    general_valid_json_document.CHECKER_ID,
+    general_version_is_defined.CHECKER_ID,
 }
 RULE_UID = "asam.net:xom:1.0.0:general.valid_schema"
 
 
 def get_schema_file(version: str, file_path: str) -> str:
+    """Retrieves the schema file corresponding to the given file path and version.
+
+    Args:
+        file_path: Path to the file.
+        version: Version string to construct the schema key.
+
+    Returns:
+        The schema file path if found, otherwise None.
+
+    Raises:
+        ValueError: If the file extension is not supported.
+    """
     # Extract the file name and extension
     file_name, file_extension = os.path.splitext(file_path)
     file_extension = file_extension.lower()  # Ensure extension is lowercase
@@ -59,8 +71,11 @@ def get_schema_file(version: str, file_path: str) -> str:
 def check_rule(checker_data: models.CheckerData) -> None:
     """
     Implements a rule to check if input file is valid according to the respective OpenMATERIAL 3D schema
+
+    Args:
+        checker_data: Checker data object used to raise issues
     """
-    logging.info("Executing valid_schema check")
+    logging.info(f"Executing {CHECKER_ID}")
 
     with open(checker_data.json_file_path, "r") as file:
         data = json.load(file)
@@ -87,13 +102,13 @@ def check_rule(checker_data: models.CheckerData) -> None:
         )
 
         error_path = list(error.absolute_path)
-        line, column = utils.find_position_in_json(data, error_path)
-        if line and column:
+        line = utils.find_property_line(checker_data.json_file_path, error_path)
+        if line:
             checker_data.result.add_file_location(
                 checker_bundle_name=constants.BUNDLE_NAME,
                 checker_id=CHECKER_ID,
                 issue_id=issue_id,
                 row=line,
-                column=column,
+                column=0,
                 description=error.message,
             )
