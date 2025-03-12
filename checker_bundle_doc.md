@@ -18,7 +18,7 @@
 
 ### check_asam_xom_version_is_defined
 
-* Description: The metadata of the file must contain an openMaterialVersion field.
+* Description: The metadata of the file must contain an openMaterial3dVersion field.
 * Addressed rules:
   * asam.net:xom:1.0.0:json.version_is_defined
 
