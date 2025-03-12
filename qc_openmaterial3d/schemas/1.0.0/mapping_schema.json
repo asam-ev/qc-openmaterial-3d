@@ -25,7 +25,7 @@
                     "description": "The version number of the mapping table, following semantic versioning (for example, '1.0.0').",
                     "pattern": "^\\d+\\.\\d+\\.\\d+$"
                 },
-                "openMaterialVersion": {
+                "openMaterial3dVersion": {
                     "type": "string",
                     "description": "The version of the ASAM OpenMATERIAL 3D specification used, adhering to semantic versioning (for example, '1.0.0').",
                     "pattern": "^\\d+\\.\\d+\\.\\d+$"
@@ -60,7 +60,7 @@
                 "name",
                 "uuid",
                 "mappingVersion",
-                "openMaterialVersion",
+                "openMaterial3dVersion",
                 "copyrights",
                 "license",
                 "authors"
