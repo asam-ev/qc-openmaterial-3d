@@ -15,7 +15,7 @@ PARAMETER_PATTERN = re.compile(r"[$][A-Za-z_][A-Za-z0-9_]*")
 def get_open_material_version(json_file_path: str) -> str:
     with open(json_file_path, "r") as file:
         data = json.load(file)
-    return data["metadata"]["openMaterialVersion"]
+    return data["metadata"]["openMaterial3dVersion"]
 
 
 def compare_versions(version1: str, version2: str) -> int:

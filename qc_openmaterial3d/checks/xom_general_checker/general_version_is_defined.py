@@ -18,7 +18,7 @@ from qc_openmaterial3d.checks.xom_general_checker import (
 )
 
 CHECKER_ID = "check_asam.net:xom:1.0.0:general.version_is_defined"
-CHECKER_DESCRIPTION = "The metadata of the file must contain an openMaterialVersion field."
+CHECKER_DESCRIPTION = "The metadata of the file must contain an openMaterial3dVersion field."
 CHECKER_PRECONDITIONS = {
     general_valid_json_document.CHECKER_ID
 }
@@ -27,7 +27,7 @@ RULE_UID = "asam.net:xom:1.0.0:general.version_is_defined"
 
 def check_rule(checker_data: models.CheckerData) -> None:
     """
-    The metadata of the file must contain an openMaterialVersion field.
+    The metadata of the file must contain an openMaterial3dVersion field.
 
     Args:
         checker_data: Checker data object used to raise issues
@@ -37,8 +37,8 @@ def check_rule(checker_data: models.CheckerData) -> None:
     with open(checker_data.json_file_path, "r") as file:
         data = json.load(file)
 
-    # Check if "metadata.openMaterialVersion" exists
-    if "metadata" not in data or "openMaterialVersion" not in data["metadata"]:
+    # Check if "metadata.openMaterial3dVersion" exists
+    if "metadata" not in data or "openMaterial3dVersion" not in data["metadata"]:
         checker_data.result.register_issue(
             checker_bundle_name=constants.BUNDLE_NAME,
             checker_id=CHECKER_ID,
