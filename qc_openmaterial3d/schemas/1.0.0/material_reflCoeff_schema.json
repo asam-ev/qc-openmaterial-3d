@@ -1,7 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "type": "object",
-    "description": "ASAM OpenMATERIAL 3D Material reflectance look-up table file definition.",
+    "description": "ASAM OpenMATERIAL 3D Material reflection coefficient look-up table file definition.",
     "properties": {
         "metadata": {
             "type": "object",
@@ -25,7 +25,7 @@
                     "description": "The version number of the material, following semantic versioning (for example, '1.0.0').",
                     "pattern": "^\\d+\\.\\d+\\.\\d+$"
                 },
-                "openMaterialVersion": {
+                "openMaterial3dVersion": {
                     "type": "string",
                     "description": "The version of the ASAM OpenMATERIAL 3D specification used, adhering to semantic versioning (for example, '1.0.0').",
                     "pattern": "^\\d+\\.\\d+\\.\\d+$"
@@ -57,7 +57,7 @@
                 },
                 "sources": {
                     "type": "string",
-                    "description": "Sources of the reflectance data (for example, was is measured, simulated, or taken from literature?) Multiple sources should be comma-separated."
+                    "description": "Sources of the reflection coefficient data. Was it measured, simulated, or taken from literature? Multiple sources should be comma-separated."
                 }
             },
             "required": [
@@ -66,27 +66,29 @@
                 "uuid",
                 "materialVersion",
                 "creationDate",
-                "openMaterialVersion",
+                "openMaterial3dVersion",
                 "copyrights",
                 "license",
                 "authors",
                 "sources"
             ]
         },
-        "reflectance": {
+        "reflectionCoefficient": {
             "type": "object",
-            "description": "Reflectance lookup table including relevant meta data.",
+            "description": "Reflection coefficient lookup table including relevant meta data. The reflection coefficient is defined as the ratio of amplitudes of the reflected electromagnetic wave over the incident electromagnetic wave \\(r = E_{\\textrm{r}} / E_{\\textrm{i}}\\). This complex value is represented by angle- and wavelength-dependent magnitude and phase values.",
             "properties": {
                 "wavelengths": {
                     "type": "array",
-                    "description": "List of all wavelengths in meters contained in the lookup table.",
+                    "description": "List of all wavelengths in meters contained in the lookup table. The wavelength values shall be within the range of 1e-09 to 17.16e-03 (upper limit corresponds to 20 kHz).",
                     "items": {
-                        "type": "number"
+                        "type": "number",
+                        "minimum": 1e-09,
+                        "maximum": 17.16e-03
                     }
                 },
                 "lookupTable": {
                     "type": "array",
-                    "description": "Array of reflectance values, with each item representing a different property. The array shall be sorted based on the columns starting with the first.",
+                    "description": "Array of reflection coefficient values, with each item representing a different property. The array shall be sorted based on the columns starting with the first.",
                     "items": {
                         "type": "array",
                         "items": [
@@ -95,49 +97,63 @@
                                     "number",
                                     "null"
                                 ],
-                                "description": "Wavelength in meters."
+                                "description": "Wavelength of radiation in free-space in meters (m). The value shall be within the range of 1e-09 to 17.16e-03 (upper limit corresponds to 20 kHz).",
+                                "minimum": 1e-09,
+                                "maximum": 17.16e-03
                             },
                             {
                                 "type": [
                                     "number",
                                     "null"
                                 ],
-                                "description": "Incident elevation angle (= zenith angle) relative to the surface normal in rad."
+                                "description": "Incident elevation angle (= zenith angle) relative to the surface normal in rad. It shall be within a range of \\(-\\pi/2\\) to \\(\\pi/2\\).",
+                                "minimum": -1.570796,
+                                "maximum": 1.570796
                             },
                             {
                                 "type": [
                                     "number",
                                     "null"
                                 ],
-                                "description": "Exit elevation angle (= zenith angle) relative to the surface normal in rad."
+                                "description": "Exit elevation angle (= zenith angle) relative to the surface normal in rad. It shall be within a range of \\(-\\pi/2\\) to \\(\\pi/2\\).",
+                                "minimum": -1.570796,
+                                "maximum": 1.570796
                             },
                             {
                                 "type": [
                                     "number",
                                     "null"
                                 ],
-                                "description": "Exit azimuth angle in rad. For reflectance with incident and exit vectors on the same plane as the normal, exit azimuth angle is 0."
+                                "description": "Exit azimuth angle in rad. It shall be within a range of \\(0\\) to \\(2 \\pi\\). For BRDFs with incident and exit vectors on the same plane as the normal, exit azimuth angle is 0.",
+                                "minimum": 0,
+                                "maximum": 6.283185
                             },
                             {
                                 "type": [
                                     "number",
                                     "null"
                                 ],
-                                "description": "Polarized plane angle in rad. This is the angle between the plane containing the incident, exit, and normal vector, and the plane of polarization."
+                                "description": "Polarized plane angle in rad. This is the angle between the plane containing the incident, exit, and normal vector, and the plane of polarization. The plane of polarization contains the direction of propagation and the electric vector. The value shall be within a range of \\(0\\) to \\(\\pi\\).",
+                                "minimum": 0,
+                                "maximum": 3.141593
                             },
                             {
                                 "type": [
                                     "number",
                                     "null"
                                 ],
-                                "description": "Amplitude within the linearly polarized plane. The amplitude is given as a relative value compared to an ideal reflector."
+                                "description": "Magnitude within the linearly polarized plane. The magnitude is given as an absolute relative value compared to an ideal reflector. The value shall be between 0 and 1",
+                                "minimum": 0,
+                                "maximum": 1
                             },
                             {
                                 "type": [
                                     "number",
                                     "null"
                                 ],
-                                "description": "Phase within the linearly polarized plane. If the phase is not taken into account, it is null."
+                                "description": "Phase within the linearly polarized plane. It shall be within a range of \\(-\\pi\\) to \\(\\pi\\). If the phase is not taken into account, it is null.",
+                                "minimum": -3.141592,
+                                "maximum": 3.141592
                             }
                         ],
                         "minItems": 7,
@@ -153,6 +169,6 @@
     },
     "required": [
         "metadata",
-        "reflectance"
+        "reflectionCoefficient"
     ]
 }

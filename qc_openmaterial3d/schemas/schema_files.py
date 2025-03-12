@@ -10,6 +10,6 @@ SCHEMA_FILES = {
     "1.0.0:brdf.xompt": "1.0.0/material_brdf_schema.json",
     "1.0.0:emp.xompt": "1.0.0/material_emp_schema.json",
     "1.0.0:optical.xompt": "1.0.0/material_optical_schema.json",
-    "1.0.0:reflectance.xompt": "1.0.0/material_reflectance_schema.json",
+    "1.0.0:reflCoeff.xompt": "1.0.0/material_reflCoeff_schema.json",
     "1.0.0:xomp": "1.0.0/material_schema.json"
 }

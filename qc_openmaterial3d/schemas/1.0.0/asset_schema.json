@@ -5,31 +5,32 @@
     "definitions": {
         "Axle": {
             "type": "object",
-            "description": "The definition of vehicle axle based on the https://releases.asam.net/OpenSCENARIO/1.0.0/Model-Documentation/content/Axle.html[OpenSCENARIO vehicle axle definition].",
+            "description": "The definition of vehicle axle based on the https://releases.asam.net/OpenSCENARIO/1.0.0/Model-Documentation/content/Axle.html[OpenSCENARIO XML vehicle axle definition].",
             "properties": {
                 "maxSteering": {
                     "type": "number",
-                    "description": "Maximum steering angle which can be performed by the wheels on this axle. Unit: rad; Range: [0;PI], symmetrical.",
+                    "description": "Maximum steering angle which can be performed by the wheels on this axle. Unit: rad; Range: [0, \\(\\pi\\)], symmetrical.",
                     "minimum": 0,
                     "maximum": 3.14159
                 },
                 "wheelDiameter": {
                     "type": "number",
-                    "description": "Diameter of the wheels on this axle. Unit: meter; Range: ]0..inf[.",
+                    "description": "Diameter of the wheels on this axle. Unit: meter; Range: ]0, inf[.",
                     "exclusiveMinimum": 0
                 },
                 "trackWidth": {
                     "type": "number",
-                    "description": "Distance of the wheels center lines at zero steering. Unit: meter; Range: [0..inf[.",
+                    "description": "Distance of the wheels center lines at zero steering. Unit: meter; Range: [0, inf[.",
                     "minimum": 0
                 },
                 "positionX": {
                     "type": "number",
-                    "description": "Longitudinal position of the axle with respect to the vehicles center of the bounding box projected to the ground. Unit: meter; Range: [0..inf[."
+                    "description": "Longitudinal position of the axle with respect to the vehicles center of the bounding box projected to the ground. Unit: meter; Range: [0, inf[.",
+                    "minimum": 0
                 },
                 "positionZ": {
                     "type": "number",
-                    "description": "Z-position of the axle with respect to the vehicles center of the bounding box projected to the ground. Usually this is half of wheel diameter. Unit:meter; Range:[0..inf[.",
+                    "description": "The z-position of the axle with respect to the vehicles center of the bounding box projected to the ground. Usually this is half of wheel diameter. Unit:meter; Range:[0, inf[.",
                     "minimum": 0
                 }
             },
@@ -53,7 +54,7 @@
                 },
                 "description": {
                     "type": "string",
-                    "description": "A concise summary of the asset's purpose or features (2-3 sentences)."
+                    "description": "A concise summary of the asset's purpose or features in 2 - 3 sentences."
                 },
                 "uuid": {
                     "type": "string",
@@ -65,14 +66,14 @@
                     "description": "The version number of the asset, following semantic versioning (for example, '1.0.0').",
                     "pattern": "^\\d+\\.\\d+\\.\\d+$"
                 },
-                "openMaterialVersion": {
+                "openMaterial3dVersion": {
                     "type": "string",
                     "description": "The version of the ASAM OpenMATERIAL 3D specification used, adhering to semantic versioning (for example, '1.0.0').",
                     "pattern": "^\\d+\\.\\d+\\.\\d+$"
                 },
                 "copyrights": {
                     "type": "array",
-                    "description": "Indicates copyright details, including the year and copyright holder (e.g., '© 2024 ACME Inc.').",
+                    "description": "Indicates copyright details, including the year and copyright holder (for example, '© 2024 ACME Inc.').",
                     "items": {
                         "type": "string"
                     },
@@ -127,7 +128,7 @@
                 },
                 "vehicleClassData": {
                     "type": "object",
-                    "description": "Vehicle specific data. This shall be filled if 'objectClass' is 'vehicle' based on the https://releases.asam.net/OpenSCENARIO/1.0.0/Model-Documentation/content/Vehicle.html[OpenSCENARIO vehicle definition].",
+                    "description": "Vehicle specific data. This shall be filled if 'objectClass' is 'vehicle' based on the https://releases.asam.net/OpenSCENARIO/1.0.0/Model-Documentation/content/Vehicle.html[OpenSCENARIO XML vehicle definition].",
                     "properties": {
                         "vehicleCategory": {
                             "type": "string",
@@ -155,12 +156,12 @@
                                 },
                                 "maxAcceleration": {
                                     "type": "number",
-                                    "description": "Maximum acceleration of the vehicle. Unit: meter/second^2. Range: [0..inf[.",
+                                    "description": "Maximum acceleration of the vehicle. Unit: meter/second^2. Range: [0, inf[.",
                                     "minimum": 0
                                 },
                                 "maxDeceleration": {
                                     "type": "number",
-                                    "description": "Maximum deceleration of the vehicle. Unit: meter/second^2. Range: [0..inf[.",
+                                    "description": "Maximum deceleration of the vehicle. Unit: meter/second^2. Range: [0, inf[.",
                                     "minimum": 0
                                 }
                             },
@@ -202,7 +203,7 @@
                 },
                 "humanClassData": {
                     "type": "object",
-                    "description": "Human specific data. This shall be filled if 'objectClass' is 'human' based on the https://releases.asam.net/OpenSCENARIO/1.0.0/Model-Documentation/content/Pedestrian.html[OpenSCENARIO pedestrian definition].",
+                    "description": "Human-specific data. This shall be filled if 'objectClass' is 'human' based on the https://releases.asam.net/OpenSCENARIO/1.0.0/Model-Documentation/content/Pedestrian.html[OpenSCENARIO XML pedestrian definition].",
                     "properties": {
                         "mass": {
                             "type": "number",
@@ -228,11 +229,13 @@
                 },
                 "triangleCount": {
                     "type": "integer",
-                    "description": "The total number of triangles in the model. A quad polygon counts as two triangles."
+                    "description": "The total number of triangles in the model. A quad polygon counts as two triangles.",
+                    "minimum": 1
                 },
                 "meshCount": {
                     "type": "integer",
-                    "description": "The total number of meshes in the 3D model file. A model geometry typically consists of several sub-meshes."
+                    "description": "The total number of meshes in the 3D model file. A model geometry typically consists of several sub-meshes.",
+                    "minimum": 1
                 },
                 "textureResolutions": {
                     "type": "array",
@@ -260,7 +263,7 @@
                 },
                 "boundingBox": {
                     "type": "object",
-                    "description": "Defines the Axis-Aligned Bounding Box (AABB) which defines the spatial boundaries of an asset in a 3D space. Example: \"boundingBox\": { \"x\": [-2.5, 2.5], \"y\": [-1.1, 1.1],\"z\": [0, 1.8]}",
+                    "description": "Defines the Axis-Aligned Bounding Box (AABB), which defines the spatial boundaries of an asset in a 3D space. Example: \"boundingBox\": { \"x\": [-2.5, 2.5], \"y\": [-1.1, 1.1],\"z\": [0, 1.8]}",
                     "properties": {
                         "x": {
                             "type": "array",
@@ -301,7 +304,7 @@
                 "name",
                 "uuid",
                 "assetVersion",
-                "openMaterialVersion",
+                "openMaterial3dVersion",
                 "copyrights",
                 "license",
                 "authors",
