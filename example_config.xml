@@ -8,6 +8,8 @@
         <Checker checkerId="check_asam.net:xom:1.0.0:general.valid_json_document" maxLevel="1" minLevel="3" />
         <Checker checkerId="check_asam.net:xom:1.0.0:general.version_is_defined" maxLevel="1" minLevel="3" />
         <Checker checkerId="check_asam.net:xom:1.0.0:general.valid_schema" maxLevel="1" minLevel="3" />
+        <Checker checkerId="check_asam.net:xom:1.0.0:general.uris_exist" maxLevel="1" minLevel="3" />
+        <Checker checkerId="check_asam.net:xom:1.0.0:xoma.material_textures_exist" maxLevel="1" minLevel="3" />
     </CheckerBundle>
 
     <ReportModule application="TextReport">

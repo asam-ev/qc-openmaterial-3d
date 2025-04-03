@@ -33,3 +33,9 @@
 * Description: If a URI property to other file is set in a JSON file, the file linked in that property shall exist.
 * Addressed rules:
   * asam.net:xom:1.0.0:general.uris_exist
+
+### check_asam.net:xom:1.0.0:xoma.material_textures_exist
+
+* Description: Textures mapped to material names in the 'materialTextureAssignment' field of .xoma files shall exist.
+* Addressed rules:
+  * asam.net:xom:1.0.0:xoma.material_textures_exist
