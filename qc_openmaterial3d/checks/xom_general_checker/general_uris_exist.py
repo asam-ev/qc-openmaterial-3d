@@ -16,7 +16,7 @@ from qc_openmaterial3d import constants
 from qc_openmaterial3d.checks import models, utils
 
 CHECKER_ID = "check_asam.net:xom:1.0.0:general.uris_exist"
-CHECKER_DESCRIPTION = "If an URI property to other file is set in a JSON file, the file linked in that property shall exist."
+CHECKER_DESCRIPTION = "If a URI property to other file is set in a JSON file, the file linked in that property shall exist."
 CHECKER_PRECONDITIONS = {}
 RULE_UID = "asam.net:xom:1.0.0:general.uris_exist"
 

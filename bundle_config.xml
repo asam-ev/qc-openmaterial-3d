@@ -1,7 +1,0 @@
-<?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<Config>
-  <Param name="InputFile" value="tests/data/uris_exist/uris_exist.negative.xomp"/>
-  <CheckerBundle application="xomBundle">
-    <Param name="resultFile" value="xom_bundle_report.xqar"/>
-  </CheckerBundle>
-</Config>
