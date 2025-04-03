@@ -2,7 +2,7 @@
     "metadata": {
         "name": "example_asset",
         "description": "This is an example asset. It demonstrates how ASAM OpenMATERIAL 3D assets work.",
-        "uuid": "87769375-a510-9c68-9af8-cc3ad3dd8349",
+        "uuid": "c931b364-794a-482f-8528-4911b92f0d5b",
         "assetVersion": "1.0.0",
         "openMaterial3dVersion": "1.0.0",
         "copyrights": ["(C) 2023-2024 Example Company"],
@@ -41,7 +41,7 @@
     "materialTextureAssignment": [
         [
             "Material_Cube",
-            "checker_xom.png"
+            "does_not_exist.png"
         ]
     ]
 }

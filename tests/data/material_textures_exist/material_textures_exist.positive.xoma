@@ -2,7 +2,7 @@
     "metadata": {
         "name": "example_asset",
         "description": "This is an example asset. It demonstrates how ASAM OpenMATERIAL 3D assets work.",
-        "uuid": "87769375-a510-9c68-9af8-cc3ad3dd8349",
+        "uuid": "4a3b7c8a-fe06-48ac-a8b3-eb54b1475624",
         "assetVersion": "1.0.0",
         "openMaterial3dVersion": "1.0.0",
         "copyrights": ["(C) 2023-2024 Example Company"],
