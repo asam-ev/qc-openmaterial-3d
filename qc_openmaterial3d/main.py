@@ -11,7 +11,7 @@ import types
 from qc_baselib import Configuration, Result, StatusType
 
 from qc_openmaterial3d import constants
-from qc_openmaterial3d.checks import xom_general_checker
+from qc_openmaterial3d.checks import xom_general_checker, xom_geo_checker
 from qc_openmaterial3d.checks import utils, models
 
 logging.basicConfig(format="%(asctime)s - %(message)s", level=logging.INFO)
@@ -158,6 +158,8 @@ def run_checks(config: Configuration, result: Result) -> None:
     execute_checker(xom_general_checker.valid_schema, checker_data)
     execute_checker(xom_general_checker.uris_exist, checker_data)
 
+    # Run xom-geo:xoma checker
+    execute_checker(xom_geo_checker.xoma_texture_assignment_requires_mapping, checker_data)
 
 def main():
     args = args_entrypoint()
