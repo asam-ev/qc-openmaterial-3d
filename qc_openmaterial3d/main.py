@@ -158,6 +158,9 @@ def run_checks(config: Configuration, result: Result) -> None:
     execute_checker(xom_general_checker.valid_schema, checker_data)
     execute_checker(xom_general_checker.uris_exist, checker_data)
 
+    # Run xom:xoma checker
+    execute_checker(xom_general_checker.material_textures_exist, checker_data)
+
 
 def main():
     args = args_entrypoint()
