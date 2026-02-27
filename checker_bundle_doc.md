@@ -39,3 +39,10 @@
 * Description: Textures mapped to material names in the 'materialTextureAssignment' field of .xoma files shall exist.
 * Addressed rules:
   * asam.net:xom:1.0.0:xoma.material_textures_exist
+
+### check_asam.net:xomgeo:1.0.0:xoma.texture_assignment_requires_mapping
+
+* Description: If the property 'materialTextureAssignment' is set, 'materialMappingUri' must also be set.
+* Addressed rules:
+  * asam.net:xomgeo:1.0.0:xoma.texture_assignment_requires_mapping
+
