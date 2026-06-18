@@ -164,6 +164,7 @@ def run_checks(config: Configuration, result: Result) -> None:
 
     # Run xom:mat checker
     execute_checker(xom_mat_checker.tables_sorted_correctly, checker_data)
+    execute_checker(xom_mat_checker.look_up_tables_unique_wavelengths, checker_data)
 
 
 def main():

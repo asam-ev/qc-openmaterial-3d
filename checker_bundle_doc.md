@@ -51,3 +51,9 @@
 * Description: Arrays in look-up tables shall be sorted based on the columns starting with the first.
 * Addressed rules:
   * asam.net:xommat:1.0.0:xompt.tables_sorted_correctly
+
+### check_asam.net:xommat:1.0.0:xomp.look_up_tables_unique_wavelengths
+
+* Description: Look-up tables referenced in a .xomp file should not have overlapping wavelength ranges.
+* Addressed rules:
+  * asam.net:xommat:1.0.0:xomp.look_up_tables_unique_wavelengths

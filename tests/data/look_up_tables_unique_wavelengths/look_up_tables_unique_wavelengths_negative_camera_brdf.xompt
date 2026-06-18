@@ -1,0 +1,19 @@
+{
+    "metadata": {
+        "name": "example_camera_brdf_overlap",
+        "uuid": "87769375-a510-9c68-9af8-cc3ad3dd8373",
+        "materialVersion": "1.0.0",
+        "openMaterial3dVersion": "1.0.0",
+        "copyrights": ["(C) 2024 Example Company"],
+        "license": "MPL-2.0",
+        "authors": ["john.doe@example.com"],
+        "sources": "Measured"
+    },
+    "brdf": {
+        "wavelengths": [5e-7, 6e-7],
+        "lookupTable": [
+            [5e-7, 0.0, 0.0, 0.0, 0.5],
+            [6e-7, 0.0, 0.0, 0.0, 0.5]
+        ]
+    }
+}

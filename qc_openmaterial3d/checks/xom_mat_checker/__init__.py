@@ -5,3 +5,4 @@
 # with this file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 from . import mat_tables_sorted_correctly as tables_sorted_correctly
+from . import mat_look_up_tables_unique_wavelengths as look_up_tables_unique_wavelengths

@@ -1,0 +1,19 @@
+{
+    "metadata": {
+        "name": "example_lidar_brdf_overlap",
+        "uuid": "87769375-a510-9c68-9af8-cc3ad3dd8374",
+        "materialVersion": "1.0.0",
+        "openMaterial3dVersion": "1.0.0",
+        "copyrights": ["(C) 2024 Example Company"],
+        "license": "MPL-2.0",
+        "authors": ["john.doe@example.com"],
+        "sources": "Measured"
+    },
+    "brdf": {
+        "wavelengths": [6e-7, 7e-7],
+        "lookupTable": [
+            [6e-7, 0.0, 0.0, 0.0, 0.5],
+            [7e-7, 0.0, 0.0, 0.0, 0.5]
+        ]
+    }
+}
