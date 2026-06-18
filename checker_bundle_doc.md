@@ -45,3 +45,9 @@
 * Description: If an asset is of type 'human', the property 'humanClassData' must be set in the metadata.
 * Addressed rules:
   * asam.net:xomgeo:1.0.0:xoma.human_class_data_defined
+
+### check_asam.net:xommat:1.0.0:xompt.tables_sorted_correctly
+
+* Description: Arrays in look-up tables shall be sorted based on the columns starting with the first.
+* Addressed rules:
+  * asam.net:xommat:1.0.0:xompt.tables_sorted_correctly

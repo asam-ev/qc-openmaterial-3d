@@ -1,0 +1,16 @@
+{
+    "metadata": {
+        "name": "example_emp_material_unsorted",
+        "uuid": "87769375-a510-9c68-9af8-cc3ad3dd8362",
+        "materialVersion": "1.0.0",
+        "openMaterial3dVersion": "1.0.0",
+        "copyrights": ["(C) 2024 Example Company"],
+        "license": "MPL-2.0",
+        "authors": ["john.doe@example.com"],
+        "sources": "Measured"
+    },
+    "electromagneticProperties": [
+        [1e-6, 300.0, 50.0, 1.0, 0.0, 2.5, 0.01],
+        [5e-7, 300.0, 50.0, 1.0, 0.0, 2.5, 0.01]
+    ]
+}
