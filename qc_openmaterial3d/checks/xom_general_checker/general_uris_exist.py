@@ -110,7 +110,7 @@ def check_rule(checker_data: models.CheckerData) -> None:
 
     if file_path.exists():
         # Load file
-        with open(file_path, "r") as file:
+        with open(file_path, "r", encoding="utf-8") as file:
             input_file = json.load(file)
 
         check_uris(checker_data.json_file_path, input_file, checker_data)

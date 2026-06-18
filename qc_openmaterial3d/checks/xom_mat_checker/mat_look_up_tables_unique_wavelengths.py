@@ -28,7 +28,7 @@ _URI_CATEGORIES = [
 
 def _load_wavelengths(xompt_path: str, top_key: str) -> list | None:
     try:
-        with open(xompt_path, "r") as f:
+        with open(xompt_path, "r", encoding="utf-8") as f:
             data = json.load(f)
         return data.get(top_key, {}).get("wavelengths", [])
     except Exception:
@@ -99,7 +99,7 @@ def check_rule(checker_data: models.CheckerData) -> None:
         )
         return
 
-    with open(file_path, "r") as f:
+    with open(file_path, "r", encoding="utf-8") as f:
         data = json.load(f)
 
     xomp_dir = os.path.dirname(os.path.abspath(file_path))

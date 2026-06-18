@@ -13,7 +13,7 @@ PARAMETER_PATTERN = re.compile(r"[$][A-Za-z_][A-Za-z0-9_]*")
 
 
 def get_open_material_version(json_file_path: str) -> str:
-    with open(json_file_path, "r") as file:
+    with open(json_file_path, "r", encoding="utf-8") as file:
         data = json.load(file)
     return data["metadata"]["openMaterial3dVersion"]
 
@@ -87,7 +87,7 @@ def find_property_line(json_file_path, property_hierarchy) -> int | None:
     Returns:
         int: The line number where the property is located, or -1 if not found.
     """
-    with open(json_file_path, "r") as file:
+    with open(json_file_path, "r", encoding="utf-8") as file:
         lines = file.readlines()
 
         # Traverse the file line by line to match the hierarchical property

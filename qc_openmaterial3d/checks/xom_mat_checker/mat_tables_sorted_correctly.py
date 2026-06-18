@@ -88,7 +88,7 @@ def check_rule(checker_data: models.CheckerData) -> None:
         )
         return
 
-    with open(file_path, "r") as f:
+    with open(file_path, "r", encoding="utf-8") as f:
         data = json.load(f)
 
     table, property_path = _get_table(xompt_type, data)

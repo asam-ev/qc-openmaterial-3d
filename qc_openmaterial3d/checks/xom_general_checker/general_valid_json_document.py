@@ -30,7 +30,7 @@ def is_valid_json(file_path: str) -> bool:
         True if the file contains valid JSON, False otherwise.
     """
     try:
-        with open(file_path, "r") as file:
+        with open(file_path, "r", encoding="utf-8") as file:
             json.load(file)
         return True
     except json.JSONDecodeError:
