@@ -39,3 +39,9 @@
 * Description: If an asset is of type 'vehicle', the property 'vehicleClassData' must be set in the metadata.
 * Addressed rules:
   * asam.net:xomgeo:1.0.0:xoma.vehicle_class_data_defined
+
+### check_asam.net:xomgeo:1.0.0:xoma.human_class_data_defined
+
+* Description: If an asset is of type 'human', the property 'humanClassData' must be set in the metadata.
+* Addressed rules:
+  * asam.net:xomgeo:1.0.0:xoma.human_class_data_defined

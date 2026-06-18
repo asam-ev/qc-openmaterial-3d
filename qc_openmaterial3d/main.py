@@ -160,6 +160,7 @@ def run_checks(config: Configuration, result: Result) -> None:
 
     # Run xom:geo checker
     execute_checker(xom_geo_checker.vehicle_class_data_defined, checker_data)
+    execute_checker(xom_geo_checker.human_class_data_defined, checker_data)
 
 
 def main():

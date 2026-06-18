@@ -5,3 +5,4 @@
 # with this file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 from . import geo_vehicle_class_data_defined as vehicle_class_data_defined
+from . import geo_human_class_data_defined as human_class_data_defined
