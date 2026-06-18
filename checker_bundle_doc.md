@@ -33,3 +33,9 @@
 * Description: If a URI property to other file is set in a JSON file, the file linked in that property shall exist.
 * Addressed rules:
   * asam.net:xom:1.0.0:general.uris_exist
+
+### check_asam.net:xomgeo:1.0.0:xoma.vehicle_class_data_defined
+
+* Description: If an asset is of type 'vehicle', the property 'vehicleClassData' must be set in the metadata.
+* Addressed rules:
+  * asam.net:xomgeo:1.0.0:xoma.vehicle_class_data_defined
