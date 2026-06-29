@@ -11,5 +11,12 @@ SCHEMA_FILES = {
     "1.0.0:emp.xompt": "1.0.0/material_emp_schema.json",
     "1.0.0:optical.xompt": "1.0.0/material_optical_schema.json",
     "1.0.0:reflCoeff.xompt": "1.0.0/material_reflCoeff_schema.json",
-    "1.0.0:xomp": "1.0.0/material_schema.json"
+    "1.0.0:xomp": "1.0.0/material_schema.json",
+    "1.1.0:xoma": "1.1.0/asset_schema.json",
+    "1.1.0:xomm": "1.1.0/mapping_schema.json",
+    "1.1.0:brdf.xompt": "1.1.0/material_brdf_schema.json",
+    "1.1.0:emp.xompt": "1.1.0/material_emp_schema.json",
+    "1.1.0:optical.xompt": "1.1.0/material_optical_schema.json",
+    "1.1.0:reflCoeff.xompt": "1.1.0/material_reflCoeff_schema.json",
+    "1.1.0:xomp": "1.1.0/material_schema.json"
 }
