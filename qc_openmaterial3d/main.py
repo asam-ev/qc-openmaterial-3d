@@ -166,6 +166,12 @@ def run_checks(config: Configuration, result: Result) -> None:
     execute_checker(xom_mat_checker.tables_sorted_correctly, checker_data)
     execute_checker(xom_mat_checker.look_up_tables_unique_wavelengths, checker_data)
 
+    # Run xom:xoma checker
+    execute_checker(xom_general_checker.material_textures_exist, checker_data)
+
+    # Run xom-geo:xoma checker
+    execute_checker(xom_geo_checker.texture_assignment_requires_mapping, checker_data)
+
 
 def main():
     args = args_entrypoint()
