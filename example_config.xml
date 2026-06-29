@@ -11,6 +11,11 @@
         <Checker checkerId="check_asam.net:xom:1.0.0:general.uris_exist" maxLevel="1" minLevel="3" />
         <Checker checkerId="check_asam.net:xom:1.0.0:xoma.material_textures_exist" maxLevel="1" minLevel="3" />
         <Checker checkerId="check_asam.net:xomgeo:1.0.0:xoma.texture_assignment_requires_mapping" maxLevel="1" minLevel="3" />
+        <Checker checkerId="check_asam.net:xomgeo:1.0.0:xoma.vehicle_class_data_defined" maxLevel="1" minLevel="3" />
+        <Checker checkerId="check_asam.net:xomgeo:1.0.0:xoma.human_class_data_defined" maxLevel="1" minLevel="3" />
+        <Checker checkerId="check_asam.net:xomgeo:1.1.0:xoma.light_definition_nodes_exist" maxLevel="1" minLevel="3" />
+        <Checker checkerId="check_asam.net:xommat:1.0.0:xompt.tables_sorted_correctly" maxLevel="1" minLevel="3" />
+        <Checker checkerId="check_asam.net:xommat:1.0.0:xomp.look_up_tables_unique_wavelengths" maxLevel="1" minLevel="3" />
 
     </CheckerBundle>
 
