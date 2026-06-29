@@ -3,8 +3,6 @@
 This repository provides a [Checker Bundle](checker_bundle_doc.md) designed for the [ASAM Quality Checker Framework](https://github.com/asam-ev/qc-framework).
 It tests ASAM OpenMATERIAL 3D files for conformity with the standard.
 
-Any new changes in this bundle should go in the develop branch first (merging specific feature branches into develop), and only merging to main when preparing a release (exception are allow previous alignment with the CCB).
-
 - [qc_openmaterial3d](#qc_openmaterial3d)
   - [Installation and usage](#installation-and-usage)
     - [Installation using pip](#installation-using-pip)
