@@ -69,3 +69,9 @@
 * Description: Look-up tables referenced in a .xomp file should not have overlapping wavelength ranges.
 * Addressed rules:
   * asam.net:xommat:1.0.0:xomp.look_up_tables_unique_wavelengths
+
+### check_asam.net:xomgeo:1.1.0:xoma.light_definition_nodes_exist
+
+* Description: If the property 'lightDefinitions' is set, all nodes referenced in the 'lightDefinitions[*].node' fields shall exist in the corresponding 3D data file.
+* Addressed rules:
+  * asam.net:xomgeo:1.1.0:xoma.light_definition_nodes_exist

@@ -7,6 +7,8 @@
 
 import re
 import json
+import logging
+import os
 
 EXPRESSION_PATTERN = re.compile(r"[$][{][ A-Za-z0-9_\+\-\*/%$\(\)\.,]*[\}]")
 PARAMETER_PATTERN = re.compile(r"[$][A-Za-z_][A-Za-z0-9_]*")
@@ -97,3 +99,21 @@ def find_property_line(json_file_path, property_hierarchy) -> int | None:
                 return recursive_search(property_hierarchy[1:], lines[line_num:], line_num + 1)
 
     return None  # If the property was not found
+
+
+def load_gltf(xoma_path: str):
+    """Load the glTF/glb model file with the same base name as the given .xoma path.
+
+    Tries .gltf first, then .glb. Returns None if neither is found or loading fails.
+    """
+    from pygltflib import GLTF2
+
+    base = os.path.splitext(xoma_path)[0]
+    for ext in (".gltf", ".glb"):
+        gltf_path = base + ext
+        if os.path.exists(gltf_path):
+            try:
+                return GLTF2().load(gltf_path)
+            except Exception as e:
+                logging.warning(f"Could not load {gltf_path}: {e}")
+    return None
