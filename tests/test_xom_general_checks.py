@@ -257,3 +257,75 @@ def test_uris_exist_xomp_negative(
         len(result.get_issues_by_rule_uid("asam.net:xom:1.0.0:general.uris_exist")) == 5
     )
     test_utils.cleanup_files()
+
+def test_xoma_material_textures_exist_positive(
+    monkeypatch,
+) -> None:
+    base_path = "tests/data/material_textures_exist/"
+    target_file_name = "material_textures_exist.positive.xoma"
+    target_file_path = os.path.join(base_path, target_file_name)
+
+    test_utils.create_test_config(target_file_path)
+
+    test_utils.launch_main(monkeypatch)
+
+    result = Result()
+    result.load_from_file(test_utils.REPORT_FILE_PATH)
+
+    assert (
+        result.get_checker_status(xom_general_checker.material_textures_exist.CHECKER_ID)
+        == StatusType.COMPLETED
+    )
+
+    assert (
+        len(result.get_issues_by_rule_uid("asam.net:xom:1.0.0:xoma.material_textures_exist")) == 0
+    )
+    test_utils.cleanup_files()
+
+def test_xoma_material_textures_exist_negative(
+    monkeypatch,
+) -> None:
+    base_path = "tests/data/material_textures_exist/"
+    target_file_name = "material_textures_exist.negative.xoma"
+    target_file_path = os.path.join(base_path, target_file_name)
+
+    test_utils.create_test_config(target_file_path)
+
+    test_utils.launch_main(monkeypatch)
+
+    result = Result()
+    result.load_from_file(test_utils.REPORT_FILE_PATH)
+
+    assert (
+        result.get_checker_status(xom_general_checker.material_textures_exist.CHECKER_ID)
+        == StatusType.COMPLETED
+    )
+
+    assert (
+        len(result.get_issues_by_rule_uid("asam.net:xom:1.0.0:xoma.material_textures_exist")) == 1
+    )
+    test_utils.cleanup_files()
+
+def test_xoma_material_textures_exist_no_assignment(
+    monkeypatch,
+) -> None:
+    base_path = "tests/data/material_textures_exist/"
+    target_file_name = "material_textures_exist.no_assignment.xoma"
+    target_file_path = os.path.join(base_path, target_file_name)
+
+    test_utils.create_test_config(target_file_path)
+
+    test_utils.launch_main(monkeypatch)
+
+    result = Result()
+    result.load_from_file(test_utils.REPORT_FILE_PATH)
+
+    assert (
+        result.get_checker_status(xom_general_checker.material_textures_exist.CHECKER_ID)
+        == StatusType.COMPLETED
+    )
+
+    assert (
+        len(result.get_issues_by_rule_uid("asam.net:xom:1.0.0:xoma.material_textures_exist")) == 0
+    )
+    test_utils.cleanup_files()
