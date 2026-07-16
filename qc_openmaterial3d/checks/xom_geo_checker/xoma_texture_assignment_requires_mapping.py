@@ -61,7 +61,7 @@ def check_rule(checker_data: models.CheckerData) -> None:
 
     if file_path.exists():
         # Load file
-        with open(file_path, "r") as file:
+        with open(file_path, "r", encoding="utf-8") as file:
             input_file = json.load(file)
 
         if not os.path.splitext(file_path)[1].lower() == '.xoma':

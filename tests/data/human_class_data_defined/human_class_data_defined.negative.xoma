@@ -1,0 +1,25 @@
+{
+    "metadata": {
+        "name": "example_human_asset_no_class_data",
+        "description": "A human asset without humanClassData set.",
+        "uuid": "87769375-a510-9c68-9af8-cc3ad3dd8354",
+        "assetVersion": "1.0.0",
+        "openMaterial3dVersion": "1.0.0",
+        "copyrights": ["(C) 2024 Example Company"],
+        "license": "MPL-2.0",
+        "authors": ["john.doe@example.com"],
+        "assetType": "object",
+        "objectClass": "human",
+        "animated": false,
+        "pbrMaterialWorkflow": "metallic",
+        "triangleCount": 20000,
+        "meshCount": 3,
+        "textureResolutions": ["2K"],
+        "normalMapFormat": "OpenGL",
+        "boundingBox": {
+            "x": [-0.3, 0.3],
+            "y": [-0.2, 0.2],
+            "z": [0.0, 1.8]
+        }
+    }
+}
