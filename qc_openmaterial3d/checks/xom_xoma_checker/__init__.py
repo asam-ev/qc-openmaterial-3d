@@ -13,3 +13,4 @@ from . import xoma_light_definition_nodes_exist as light_definition_nodes_exist
 from . import xoma_emissive_light_nodes_exist as emissive_light_nodes_exist
 from . import xoma_external_reference_nodes_exist as external_reference_nodes_exist
 from . import xoma_geometry_property_nodes_exist as geometry_property_nodes_exist
+from . import xoma_emissive_light_materials_exist as emissive_light_materials_exist
