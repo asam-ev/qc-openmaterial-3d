@@ -12,7 +12,12 @@ import types
 from qc_baselib import Configuration, Result, StatusType
 
 from qc_openmaterial3d import constants, basic_preconditions
-from qc_openmaterial3d.checks import xom_general_checker, xom_geo_checker, xom_mat_checker
+from qc_openmaterial3d.checks import (
+    xom_general_checker,
+    xom_xoma_checker,
+    xom_xompt_checker,
+    xom_xomp_checker,
+)
 from qc_openmaterial3d.checks import utils, models
 
 logging.basicConfig(format="%(asctime)s - %(message)s", level=logging.INFO)
@@ -184,21 +189,19 @@ def run_checks(config: Configuration, result: Result) -> None:
     ):
         checker_data.gltf = utils.load_gltf(checker_data.json_file_path)
 
-    # Run xom:geo checker
-    execute_checker(xom_geo_checker.vehicle_class_data_defined, checker_data)
-    execute_checker(xom_geo_checker.human_class_data_defined, checker_data)
-    execute_checker(xom_geo_checker.light_definition_nodes_exist, checker_data)
-    execute_checker(xom_geo_checker.emissive_light_nodes_exist, checker_data)
-
-    # Run xom:mat checker
-    execute_checker(xom_mat_checker.tables_sorted_correctly, checker_data)
-    execute_checker(xom_mat_checker.look_up_tables_unique_wavelengths, checker_data)
-
     # Run xom:xoma checker
-    execute_checker(xom_general_checker.material_textures_exist, checker_data)
+    execute_checker(xom_xoma_checker.material_textures_exist, checker_data)
+    execute_checker(xom_xoma_checker.texture_assignment_requires_mapping, checker_data)
+    execute_checker(xom_xoma_checker.vehicle_class_data_defined, checker_data)
+    execute_checker(xom_xoma_checker.human_class_data_defined, checker_data)
+    execute_checker(xom_xoma_checker.light_definition_nodes_exist, checker_data)
+    execute_checker(xom_xoma_checker.emissive_light_nodes_exist, checker_data)
 
-    # Run xom-geo:xoma checker
-    execute_checker(xom_geo_checker.texture_assignment_requires_mapping, checker_data)
+    # Run xom:xompt checker
+    execute_checker(xom_xompt_checker.tables_sorted_correctly, checker_data)
+
+    # Run xom:xomp checker
+    execute_checker(xom_xomp_checker.look_up_tables_unique_wavelengths, checker_data)
 
 
 def main():

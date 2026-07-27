@@ -12,13 +12,13 @@ from qc_baselib import IssueSeverity, StatusType
 from qc_openmaterial3d import constants, basic_preconditions
 from qc_openmaterial3d.checks import models, utils
 
-CHECKER_ID = "check_asam.net:xomgeo:1.1.0:xoma.emissive_light_nodes_exist"
+CHECKER_ID = "check_asam.net:xom:1.1.0:xoma.light_definition_nodes_exist"
 CHECKER_DESCRIPTION = (
-    "If the property 'emissiveLightMapping' is set, all nodes referenced in the "
-    "'emissiveLightMapping[*].assocNode' fields shall exist in the corresponding 3D data file."
+    "If the property 'lightDefinitions' is set, all nodes referenced in the "
+    "'lightDefinitions[*].node' fields shall exist in the corresponding 3D data file."
 )
 CHECKER_PRECONDITIONS = basic_preconditions.CHECKER_PRECONDITIONS
-RULE_UID = "asam.net:xomgeo:1.1.0:xoma.emissive_light_nodes_exist"
+RULE_UID = "asam.net:xom:1.1.0:xoma.light_definition_nodes_exist"
 
 
 def check_rule(checker_data: models.CheckerData) -> None:
@@ -55,24 +55,24 @@ def check_rule(checker_data: models.CheckerData) -> None:
     with open(file_path, "r", encoding="utf-8") as f:
         data = json.load(f)
 
-    emissive_mappings = data.get("emissiveLightMapping", [])
-    if not emissive_mappings:
+    light_definitions = data.get("lightDefinitions", [])
+    if not light_definitions:
         return
 
     gltf_node_names = {
         node.name for node in checker_data.gltf.nodes if node.name is not None
     }
 
-    table_line = utils.find_property_line(file_path, ["emissiveLightMapping"])
+    table_line = utils.find_property_line(file_path, ["lightDefinitions"])
 
-    for i, mapping in enumerate(emissive_mappings):
-        node_name = mapping.get("assocNode")
+    for i, light in enumerate(light_definitions):
+        node_name = light.get("node")
         if node_name is not None and node_name not in gltf_node_names:
             issue_id = checker_data.result.register_issue(
                 checker_bundle_name=constants.BUNDLE_NAME,
                 checker_id=CHECKER_ID,
                 description=(
-                    f"Node '{node_name}' referenced in emissiveLightMapping[{i}].assocNode "
+                    f"Node '{node_name}' referenced in lightDefinitions[{i}].node "
                     f"does not exist in the 3D model file."
                 ),
                 level=IssueSeverity.ERROR,
@@ -85,5 +85,5 @@ def check_rule(checker_data: models.CheckerData) -> None:
                     issue_id=issue_id,
                     row=table_line,
                     column=0,
-                    description="'emissiveLightMapping' references a node that does not exist in the 3D model.",
+                    description="'lightDefinitions' references a node that does not exist in the 3D model.",
                 )

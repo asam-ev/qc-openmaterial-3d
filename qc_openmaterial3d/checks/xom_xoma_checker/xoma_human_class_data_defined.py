@@ -12,10 +12,10 @@ from qc_baselib import IssueSeverity, StatusType
 from qc_openmaterial3d import constants, basic_preconditions
 from qc_openmaterial3d.checks import models, utils
 
-CHECKER_ID = "check_asam.net:xomgeo:1.0.0:xoma.vehicle_class_data_defined"
-CHECKER_DESCRIPTION = "If an asset is of type 'vehicle', the property 'vehicleClassData' must be set in the metadata."
+CHECKER_ID = "check_asam.net:xom:1.0.0:xoma.human_class_data_defined"
+CHECKER_DESCRIPTION = "If an asset is of type 'human', the property 'humanClassData' must be set in the metadata."
 CHECKER_PRECONDITIONS = basic_preconditions.CHECKER_PRECONDITIONS
-RULE_UID = "asam.net:xomgeo:1.0.0:xoma.vehicle_class_data_defined"
+RULE_UID = "asam.net:xom:1.0.0:xoma.human_class_data_defined"
 
 
 def check_rule(checker_data: models.CheckerData) -> None:
@@ -40,17 +40,17 @@ def check_rule(checker_data: models.CheckerData) -> None:
     metadata = data.get("metadata", {})
     object_class = metadata.get("objectClass")
 
-    if object_class != "vehicle":
+    if object_class != "human":
         return
 
-    if "vehicleClassData" not in metadata:
+    if "humanClassData" not in metadata:
         line = utils.find_property_line(
             checker_data.json_file_path, ["metadata", "objectClass"]
         )
         issue_id = checker_data.result.register_issue(
             checker_bundle_name=constants.BUNDLE_NAME,
             checker_id=CHECKER_ID,
-            description="Asset objectClass is 'vehicle' but 'vehicleClassData' is not set in metadata.",
+            description="Asset objectClass is 'human' but 'humanClassData' is not set in metadata.",
             level=IssueSeverity.ERROR,
             rule_uid=RULE_UID,
         )
@@ -61,5 +61,5 @@ def check_rule(checker_data: models.CheckerData) -> None:
                 issue_id=issue_id,
                 row=line,
                 column=0,
-                description="objectClass is 'vehicle' here but vehicleClassData is missing.",
+                description="objectClass is 'human' here but humanClassData is missing.",
             )

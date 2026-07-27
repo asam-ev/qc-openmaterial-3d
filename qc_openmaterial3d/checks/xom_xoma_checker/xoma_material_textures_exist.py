@@ -15,24 +15,17 @@ from qc_baselib import IssueSeverity
 from qc_openmaterial3d import constants
 from qc_openmaterial3d.checks import models, utils
 
-CHECKER_ID = "check_asam.net:xomgeo:1.0.0:xoma.texture_assignment_requires_mapping"
-CHECKER_DESCRIPTION = "If the property 'materialTextureAssignment' is set, 'materialMappingUri' must also be set."
+CHECKER_ID = "check_asam.net:xom:1.0.0:xoma.material_textures_exist"
+CHECKER_DESCRIPTION = "Textures mapped to material names in the 'materialTextureAssignment' field of .xoma files shall exist."
 CHECKER_PRECONDITIONS = {}
-RULE_UID = "asam.net:xomgeo:1.0.0:xoma.texture_assignment_requires_mapping"
+RULE_UID = "asam.net:xom:1.0.0:xoma.material_textures_exist"
 
 
-def add_issue(checker_data: models.CheckerData, input_json_path: str):
-    """
-        Add issue to checker_data.
-
-        Args:
-            input_json_path: Absolute path of the input json needed to get issue locations
-            checker_data: Checker data object used to raise issues
-        """
+def add_issue(checker_data: models.CheckerData, input_json_path: str, uri_path: str):
     issue_id = checker_data.result.register_issue(
         checker_bundle_name=constants.BUNDLE_NAME,
         checker_id=CHECKER_ID,
-        description=f"materialTextureAssignment is set in the xoma file but the materialMappingUri property is not set.",
+        description=f"The texture path {uri_path} set in the materialTextureAssignment does not exist.",
         level=IssueSeverity.ERROR,
         rule_uid=RULE_UID
     )
@@ -44,23 +37,28 @@ def add_issue(checker_data: models.CheckerData, input_json_path: str):
             issue_id=issue_id,
             row=line,
             column=0,
-            description="materialMappingUri does not exist.",
+            description="File does not exist.",
         )
 
-def check_rule(checker_data: models.CheckerData) -> None:
-    """
-    Implements a rule to check if assigned textures exist
 
-    Args:
-        checker_data: Checker data object used to raise issues
-    """
+def check_paths(input_json_path: str, input_json: dict, checker_data: models.CheckerData):
+    base_dir = os.path.dirname(os.path.abspath(input_json_path))
+    texture_assignment = input_json["materialTextureAssignment"]
+
+    for assignment in texture_assignment:
+        file_path = assignment[1]
+        if isinstance(file_path, str):
+            absolute_path = os.path.join(base_dir, file_path)
+            if not os.path.exists(absolute_path):
+                add_issue(checker_data, input_json_path, file_path)
+
+
+def check_rule(checker_data: models.CheckerData) -> None:
     logging.info(f"Executing {CHECKER_ID}")
 
-    # Check the precondition (whether the input file exists).
     file_path = Path(checker_data.json_file_path)
 
     if file_path.exists():
-        # Load file
         with open(file_path, "r", encoding="utf-8") as file:
             input_file = json.load(file)
 
@@ -70,8 +68,7 @@ def check_rule(checker_data: models.CheckerData) -> None:
         if "materialTextureAssignment" not in input_file:
             return
 
-        if not "materialMappingUri" in input_file:
-            add_issue(checker_data, checker_data.json_file_path)
+        check_paths(checker_data.json_file_path, input_file, checker_data)
 
     else:
         checker_data.result.register_issue(

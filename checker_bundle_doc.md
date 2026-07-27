@@ -44,41 +44,40 @@
 
 * Description: If the property 'materialTextureAssignment' is set, 'materialMappingUri' must also be set.
 * Addressed rules:
-  * asam.net:xomgeo:1.0.0:xoma.texture_assignment_requires_mapping
+  * asam.net:xom:1.0.0:xoma.texture_assignment_requires_mapping
 
 ### check_asam.net:xom:1.0.0:xoma.vehicle_class_data_defined
 
 * Description: If an asset is of type 'vehicle', the property 'vehicleClassData' must be set in the metadata.
 * Addressed rules:
-  * asam.net:xomgeo:1.0.0:xoma.vehicle_class_data_defined
+  * asam.net:xom:1.0.0:xoma.vehicle_class_data_defined
 
 ### check_asam.net:xom:1.0.0:xoma.human_class_data_defined
 
 * Description: If an asset is of type 'human', the property 'humanClassData' must be set in the metadata.
 * Addressed rules:
-  * asam.net:xomgeo:1.0.0:xoma.human_class_data_defined
+  * asam.net:xom:1.0.0:xoma.human_class_data_defined
 
-### check_asam.net:xomgeo:1.1.0:xoma.light_definition_nodes_exist
+### check_asam.net:xom:1.1.0:xoma.light_definition_nodes_exist
 
 * Description: If the property 'lightDefinitions' is set, all nodes referenced in the 'lightDefinitions[*].node' fields shall exist in the corresponding 3D data file.
 * Addressed rules:
-  * asam.net:xomgeo:1.1.0:xoma.light_definition_nodes_exist
+  * asam.net:xom:1.1.0:xoma.light_definition_nodes_exist
 
-### check_asam.net:xomgeo:1.1.0:xoma.emissive_light_nodes_exist
+### check_asam.net:xom:1.1.0:xoma.emissive_light_nodes_exist
 
 * Description: If the property 'emissiveLightMapping' is set, all nodes referenced in the 'emissiveLightMapping[*].assocNode' fields shall exist in the corresponding 3D data file.
 * Addressed rules:
-  * asam.net:xomgeo:1.1.0:xoma.emissive_light_nodes_exist
-
+  * asam.net:xom:1.1.0:xoma.emissive_light_nodes_exist
 
 ### check_asam.net:xom:1.0.0:xompt.tables_sorted_correctly
 
 * Description: Arrays in look-up tables shall be sorted based on the columns starting with the first.
 * Addressed rules:
-  * asam.net:xommat:1.0.0:xompt.tables_sorted_correctly
+  * asam.net:xom:1.0.0:xompt.tables_sorted_correctly
 
 ### check_asam.net:xom:1.0.0:xomp.look_up_tables_unique_wavelengths
 
 * Description: Look-up tables referenced in a .xomp file should not have overlapping wavelength ranges.
 * Addressed rules:
-  * asam.net:xommat:1.0.0:xomp.look_up_tables_unique_wavelengths
+  * asam.net:xom:1.0.0:xomp.look_up_tables_unique_wavelengths
