@@ -61,6 +61,8 @@ def execute_checker(
     checker_data: models.CheckerData,
     required_definition_setting: bool = True,
 ) -> None:
+    logging.info(f"Executing {checker.CHECKER_ID}")
+
     # Register checker
     checker_data.result.register_checker(
         checker_bundle_name=constants.BUNDLE_NAME,

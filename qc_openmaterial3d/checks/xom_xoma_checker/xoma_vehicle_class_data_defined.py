@@ -19,7 +19,6 @@ RULE_UID = "asam.net:xom:1.0.0:xoma.vehicle_class_data_defined"
 
 
 def check_rule(checker_data: models.CheckerData) -> None:
-    logging.info(f"Executing {CHECKER_ID}")
 
     if not checker_data.json_file_path.endswith(".xoma"):
         checker_data.result.set_checker_status(

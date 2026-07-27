@@ -58,24 +58,49 @@ def recursive_search(hierarchy, lines, current_line):
 
     Args:
         hierarchy (list): The remaining parts of the property hierarchy to search for.
+            Elements may be strings (object keys) or ints (array indices).
         lines (list): All lines of the JSON file.
         current_line (int): The current line number in the JSON file.
 
     Returns:
-        int: The line number of the property if found, otherwise -1.
+        int | None: The line number of the property if found, otherwise None.
     """
     if not hierarchy:
         return current_line
 
+    key = hierarchy[0]
+
+    if isinstance(key, int):
+        # Navigate to the N-th element in an array by tracking bracket depth.
+        # After the opening '[' the depth is 1; each '{' at depth 1 is an array item.
+        target = key
+        count = -1
+        depth = 0
+        for line_num, line in enumerate(lines):
+            for char in line:
+                if char in ('{', '['):
+                    if depth == 1 and char == '{':
+                        count += 1
+                        if count == target:
+                            if len(hierarchy) == 1:
+                                return current_line + line_num
+                            else:
+                                return recursive_search(
+                                    hierarchy[1:], lines[line_num:], current_line + line_num
+                                )
+                    depth += 1
+                elif char in ('}', ']'):
+                    depth -= 1
+        return None
+
     for line_num, line in enumerate(lines):
-        # Start by checking if the current line corresponds to the first property in the hierarchy
-        if f'"{hierarchy[0]}"' in line:
+        if f'"{key}"' in line:
             if len(hierarchy) == 1:
                 return current_line + line_num
             else:
                 return recursive_search(hierarchy[1:], lines[line_num:], current_line + line_num)
 
-    return -1
+    return None
 
 
 def find_property_line(json_file_path, property_hierarchy) -> int | None:

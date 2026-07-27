@@ -22,7 +22,6 @@ RULE_UID = "asam.net:xom:1.1.0:xoma.external_reference_nodes_exist"
 
 
 def check_rule(checker_data: models.CheckerData) -> None:
-    logging.info(f"Executing {CHECKER_ID}")
 
     file_path = checker_data.json_file_path
 
@@ -63,8 +62,6 @@ def check_rule(checker_data: models.CheckerData) -> None:
         node.name for node in checker_data.gltf.nodes if node.name is not None
     }
 
-    table_line = utils.find_property_line(file_path, ["externalAssetReferences"])
-
     for i, ref in enumerate(references):
         node_name = ref.get("referenceNode")
         if node_name is not None and node_name not in gltf_node_names:
@@ -78,12 +75,15 @@ def check_rule(checker_data: models.CheckerData) -> None:
                 level=IssueSeverity.ERROR,
                 rule_uid=RULE_UID,
             )
-            if table_line is not None:
+            node_line = utils.find_property_line(
+                file_path, ["externalAssetReferences", i, "referenceNode"]
+            )
+            if node_line is not None:
                 checker_data.result.add_file_location(
                     checker_bundle_name=constants.BUNDLE_NAME,
                     checker_id=CHECKER_ID,
                     issue_id=issue_id,
-                    row=table_line,
+                    row=node_line,
                     column=0,
                     description="'externalAssetReferences' references a node that does not exist in the 3D model.",
                 )

@@ -28,7 +28,7 @@
             "luminousIntensity": 1000.0
         },
         {
-            "node": "NonExistentNode",
+            "node": "Grp_Light_Low_Beam_Left",
             "outerConeAngle": 45.0,
             "luminousIntensity": 500.0
         }

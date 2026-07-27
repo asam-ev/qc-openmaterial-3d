@@ -42,7 +42,6 @@ def add_issue(checker_data: models.CheckerData, input_json_path: str):
 
 
 def check_rule(checker_data: models.CheckerData) -> None:
-    logging.info(f"Executing {CHECKER_ID}")
 
     file_path = Path(checker_data.json_file_path)
 

@@ -82,7 +82,6 @@ def _check_category(
 
 
 def check_rule(checker_data: models.CheckerData) -> None:
-    logging.info(f"Executing {CHECKER_ID}")
 
     file_path = checker_data.json_file_path
 

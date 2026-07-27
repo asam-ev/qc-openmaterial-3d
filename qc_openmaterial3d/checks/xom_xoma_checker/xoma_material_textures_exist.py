@@ -54,7 +54,6 @@ def check_paths(input_json_path: str, input_json: dict, checker_data: models.Che
 
 
 def check_rule(checker_data: models.CheckerData) -> None:
-    logging.info(f"Executing {CHECKER_ID}")
 
     file_path = Path(checker_data.json_file_path)
 

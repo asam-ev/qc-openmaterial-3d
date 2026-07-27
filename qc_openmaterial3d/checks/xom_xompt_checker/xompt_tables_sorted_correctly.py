@@ -56,7 +56,6 @@ def _is_out_of_order(prev_row: list, curr_row: list) -> bool:
 
 
 def check_rule(checker_data: models.CheckerData) -> None:
-    logging.info(f"Executing {CHECKER_ID}")
 
     file_path = checker_data.json_file_path
 

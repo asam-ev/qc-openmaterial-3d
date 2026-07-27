@@ -44,7 +44,6 @@ def check_rule(checker_data: models.CheckerData) -> None:
     Args:
         checker_data: Checker data object used to raise issues
     """
-    logging.info(f"Executing {CHECKER_ID}")
 
     # Check the precondition (whether the input file exists).
     file_path = Path(checker_data.json_file_path)
