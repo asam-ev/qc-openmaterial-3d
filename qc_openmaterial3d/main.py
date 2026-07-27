@@ -197,6 +197,7 @@ def run_checks(config: Configuration, result: Result) -> None:
     execute_checker(xom_xoma_checker.light_definition_nodes_exist, checker_data)
     execute_checker(xom_xoma_checker.emissive_light_nodes_exist, checker_data)
     execute_checker(xom_xoma_checker.external_reference_nodes_exist, checker_data)
+    execute_checker(xom_xoma_checker.geometry_property_nodes_exist, checker_data)
 
     # Run xom:xompt checker
     execute_checker(xom_xompt_checker.tables_sorted_correctly, checker_data)
