@@ -24,13 +24,13 @@
     "lightDefinitions": [
         {
             "node": "Grp_Light_Low_Beam_Left_0",
-            "outer_cone_angle": 30.0,
-            "luminous_intensity": 1000.0
+            "outerConeAngle": 30.0,
+            "luminousIntensity": 1000.0
         },
         {
             "node": "NonExistentNode",
-            "outer_cone_angle": 45.0,
-            "luminous_intensity": 500.0
+            "outerConeAngle": 45.0,
+            "luminousIntensity": 500.0
         }
     ]
 }

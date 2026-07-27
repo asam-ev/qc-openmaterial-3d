@@ -188,6 +188,7 @@ def run_checks(config: Configuration, result: Result) -> None:
     execute_checker(xom_geo_checker.vehicle_class_data_defined, checker_data)
     execute_checker(xom_geo_checker.human_class_data_defined, checker_data)
     execute_checker(xom_geo_checker.light_definition_nodes_exist, checker_data)
+    execute_checker(xom_geo_checker.emissive_light_nodes_exist, checker_data)
 
     # Run xom:mat checker
     execute_checker(xom_mat_checker.tables_sorted_correctly, checker_data)

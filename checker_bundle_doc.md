@@ -58,11 +58,17 @@
 * Addressed rules:
   * asam.net:xomgeo:1.0.0:xoma.human_class_data_defined
 
-### check_asam.net:xom:1.1.0:xoma.light_definition_nodes_exist
+### check_asam.net:xomgeo:1.1.0:xoma.light_definition_nodes_exist
 
 * Description: If the property 'lightDefinitions' is set, all nodes referenced in the 'lightDefinitions[*].node' fields shall exist in the corresponding 3D data file.
 * Addressed rules:
   * asam.net:xomgeo:1.1.0:xoma.light_definition_nodes_exist
+
+### check_asam.net:xomgeo:1.1.0:xoma.emissive_light_nodes_exist
+
+* Description: If the property 'emissiveLightMapping' is set, all nodes referenced in the 'emissiveLightMapping[*].assocNode' fields shall exist in the corresponding 3D data file.
+* Addressed rules:
+  * asam.net:xomgeo:1.1.0:xoma.emissive_light_nodes_exist
 
 
 ### check_asam.net:xom:1.0.0:xompt.tables_sorted_correctly

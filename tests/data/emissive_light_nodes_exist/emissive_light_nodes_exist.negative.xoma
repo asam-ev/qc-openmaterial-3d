@@ -1,8 +1,8 @@
 {
     "metadata": {
         "name": "example_asset",
-        "description": "Test asset for light_definition_nodes_exist positive case.",
-        "uuid": "87769375-a510-9c68-9af8-cc3ad3dd8349",
+        "description": "Test asset for emissive_light_nodes_exist negative case.",
+        "uuid": "87769375-a510-9c68-9af8-cc3ad3dd8352",
         "assetVersion": "1.0.0",
         "openMaterial3dVersion": "1.1.0",
         "copyrights": ["(C) 2025 ASAM e.V."],
@@ -21,16 +21,18 @@
             "z": [0.0, 2.0]
         }
     },
-    "lightDefinitions": [
+    "emissiveLightMapping": [
         {
-            "node": "Grp_Light_Low_Beam_Left_0",
-            "outerConeAngle": 30.0,
-            "luminousIntensity": 1000.0
+            "assocNode": "Grp_Light_Indicator_Left_0",
+            "materialName": "Mat_Indicator_Left",
+            "luminance": 5000.0,
+            "color": {"r": 255, "g": 120, "b": 0}
         },
         {
-            "node": "Grp_Light_Low_Beam_Right_0",
-            "outerConeAngle": 30.0,
-            "luminousIntensity": 1000.0
+            "assocNode": "NonExistentNode",
+            "materialName": "Mat_Indicator_Right",
+            "luminance": 5000.0,
+            "color": {"r": 255, "g": 120, "b": 0}
         }
     ]
 }
