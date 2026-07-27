@@ -11,3 +11,4 @@ from . import xoma_vehicle_class_data_defined as vehicle_class_data_defined
 from . import xoma_human_class_data_defined as human_class_data_defined
 from . import xoma_light_definition_nodes_exist as light_definition_nodes_exist
 from . import xoma_emissive_light_nodes_exist as emissive_light_nodes_exist
+from . import xoma_external_reference_nodes_exist as external_reference_nodes_exist

@@ -70,6 +70,12 @@
 * Addressed rules:
   * asam.net:xom:1.1.0:xoma.emissive_light_nodes_exist
 
+### check_asam.net:xom:1.1.0:xoma.external_reference_nodes_exist
+
+* Description: If the property 'externalAssetReferences' is set, all nodes referenced in the 'externalAssetReferences[*].referenceNode' fields shall exist in the corresponding 3D data file.
+* Addressed rules:
+  * asam.net:xom:1.1.0:xoma.external_reference_nodes_exist
+
 ### check_asam.net:xom:1.0.0:xompt.tables_sorted_correctly
 
 * Description: Arrays in look-up tables shall be sorted based on the columns starting with the first.
