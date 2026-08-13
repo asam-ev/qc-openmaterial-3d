@@ -18,6 +18,8 @@
         <Checker checkerId="check_asam.net:xom:1.1.0:xoma.external_reference_nodes_exist" maxLevel="1" minLevel="3" />
         <Checker checkerId="check_asam.net:xom:1.1.0:xoma.geometry_property_nodes_exist" maxLevel="1" minLevel="3" />
         <Checker checkerId="check_asam.net:xom:1.1.0:xoma.emissive_light_materials_exist" maxLevel="1" minLevel="3" />
+        <Checker checkerId="check_asam.net:xom:1.1.0:xoma.bounding_box_min_max_values" maxLevel="1" minLevel="3" />
+        <Checker checkerId="check_asam.net:xom:1.1.0:xoma.cone_angles_ordered_correctly" maxLevel="1" minLevel="3" />
         <Checker checkerId="check_asam.net:xom:1.0.0:xompt.tables_sorted_correctly" maxLevel="1" minLevel="3" />
         <Checker checkerId="check_asam.net:xom:1.0.0:xomp.look_up_tables_unique_wavelengths" maxLevel="1" minLevel="3" />
 

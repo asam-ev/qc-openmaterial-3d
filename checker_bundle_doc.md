@@ -88,6 +88,18 @@
 * Addressed rules:
   * asam.net:xom:1.1.0:xoma.emissive_light_materials_exist
 
+### check_asam.net:xom:1.1.0:xoma.bounding_box_min_max_values
+
+* Description: In the 'metadata.boundingBox' property of .xoma files, the first value of the 'x', 'y', and 'z' arrays is the minimum and the second value is the maximum. The first value shall be smaller than or equal to the second value.
+* Addressed rules:
+  * asam.net:xom:1.1.0:xoma.bounding_box_min_max_values
+
+### check_asam.net:xom:1.1.0:xoma.cone_angles_ordered_correctly
+
+* Description: If the properties 'lightDefinitions.innerConeAngle' and 'lightDefinitions.outerConeAngle' are both set, the value of 'lightDefinitions.innerConeAngle' shall be smaller than the value of 'lightDefinitions.outerConeAngle'.
+* Addressed rules:
+  * asam.net:xom:1.1.0:xoma.cone_angles_ordered_correctly
+
 ### check_asam.net:xom:1.0.0:xompt.tables_sorted_correctly
 
 * Description: Arrays in look-up tables shall be sorted based on the columns starting with the first.

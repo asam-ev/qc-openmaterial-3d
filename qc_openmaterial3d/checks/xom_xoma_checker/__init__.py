@@ -14,3 +14,5 @@ from . import xoma_emissive_light_nodes_exist as emissive_light_nodes_exist
 from . import xoma_external_reference_nodes_exist as external_reference_nodes_exist
 from . import xoma_geometry_property_nodes_exist as geometry_property_nodes_exist
 from . import xoma_emissive_light_materials_exist as emissive_light_materials_exist
+from . import xoma_bounding_box_min_max_values as bounding_box_min_max_values
+from . import xoma_cone_angles_ordered_correctly as cone_angles_ordered_correctly

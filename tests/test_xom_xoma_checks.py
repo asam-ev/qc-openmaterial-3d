@@ -518,3 +518,125 @@ def test_geometry_property_nodes_exist_skipped_old_version(monkeypatch) -> None:
     )
 
     test_utils.cleanup_files()
+
+
+def test_bounding_box_min_max_values_positive(monkeypatch) -> None:
+    base_path = "tests/data/bounding_box_min_max_values/"
+    target_file_name = "bounding_box_min_max_values.positive.xoma"
+    target_file_path = os.path.join(base_path, target_file_name)
+
+    test_utils.create_test_config(target_file_path)
+    test_utils.launch_main(monkeypatch)
+
+    result = Result()
+    result.load_from_file(test_utils.REPORT_FILE_PATH)
+
+    assert (
+        result.get_checker_status(xom_xoma_checker.bounding_box_min_max_values.CHECKER_ID)
+        == StatusType.COMPLETED
+    )
+    assert len(result.get_issues_by_rule_uid("asam.net:xom:1.1.0:xoma.bounding_box_min_max_values")) == 0
+
+    test_utils.cleanup_files()
+
+
+def test_bounding_box_min_max_values_negative(monkeypatch) -> None:
+    base_path = "tests/data/bounding_box_min_max_values/"
+    target_file_name = "bounding_box_min_max_values.negative.xoma"
+    target_file_path = os.path.join(base_path, target_file_name)
+
+    test_utils.create_test_config(target_file_path)
+    test_utils.launch_main(monkeypatch)
+
+    result = Result()
+    result.load_from_file(test_utils.REPORT_FILE_PATH)
+
+    assert (
+        result.get_checker_status(xom_xoma_checker.bounding_box_min_max_values.CHECKER_ID)
+        == StatusType.COMPLETED
+    )
+    issues = result.get_issues_by_rule_uid("asam.net:xom:1.1.0:xoma.bounding_box_min_max_values")
+    assert len(issues) == 1
+    assert issues[0].level == IssueSeverity.ERROR
+
+    test_utils.cleanup_files()
+
+
+def test_bounding_box_min_max_values_skipped_old_version(monkeypatch) -> None:
+    base_path = "tests/data/valid_schema/"
+    target_file_name = "json.valid_schema.positive.xoma"
+    target_file_path = os.path.join(base_path, target_file_name)
+
+    test_utils.create_test_config(target_file_path)
+    test_utils.launch_main(monkeypatch)
+
+    result = Result()
+    result.load_from_file(test_utils.REPORT_FILE_PATH)
+
+    assert (
+        result.get_checker_status(xom_xoma_checker.bounding_box_min_max_values.CHECKER_ID)
+        == StatusType.SKIPPED
+    )
+
+    test_utils.cleanup_files()
+
+
+def test_cone_angles_ordered_correctly_positive(monkeypatch) -> None:
+    base_path = "tests/data/cone_angles_ordered_correctly/"
+    target_file_name = "cone_angles_ordered_correctly.positive.xoma"
+    target_file_path = os.path.join(base_path, target_file_name)
+
+    test_utils.create_test_config(target_file_path)
+    test_utils.launch_main(monkeypatch)
+
+    result = Result()
+    result.load_from_file(test_utils.REPORT_FILE_PATH)
+
+    assert (
+        result.get_checker_status(xom_xoma_checker.cone_angles_ordered_correctly.CHECKER_ID)
+        == StatusType.COMPLETED
+    )
+    assert len(result.get_issues_by_rule_uid("asam.net:xom:1.1.0:xoma.cone_angles_ordered_correctly")) == 0
+
+    test_utils.cleanup_files()
+
+
+def test_cone_angles_ordered_correctly_negative(monkeypatch) -> None:
+    base_path = "tests/data/cone_angles_ordered_correctly/"
+    target_file_name = "cone_angles_ordered_correctly.negative.xoma"
+    target_file_path = os.path.join(base_path, target_file_name)
+
+    test_utils.create_test_config(target_file_path)
+    test_utils.launch_main(monkeypatch)
+
+    result = Result()
+    result.load_from_file(test_utils.REPORT_FILE_PATH)
+
+    assert (
+        result.get_checker_status(xom_xoma_checker.cone_angles_ordered_correctly.CHECKER_ID)
+        == StatusType.COMPLETED
+    )
+    issues = result.get_issues_by_rule_uid("asam.net:xom:1.1.0:xoma.cone_angles_ordered_correctly")
+    assert len(issues) == 1
+    assert issues[0].level == IssueSeverity.ERROR
+
+    test_utils.cleanup_files()
+
+
+def test_cone_angles_ordered_correctly_skipped_old_version(monkeypatch) -> None:
+    base_path = "tests/data/valid_schema/"
+    target_file_name = "json.valid_schema.positive.xoma"
+    target_file_path = os.path.join(base_path, target_file_name)
+
+    test_utils.create_test_config(target_file_path)
+    test_utils.launch_main(monkeypatch)
+
+    result = Result()
+    result.load_from_file(test_utils.REPORT_FILE_PATH)
+
+    assert (
+        result.get_checker_status(xom_xoma_checker.cone_angles_ordered_correctly.CHECKER_ID)
+        == StatusType.SKIPPED
+    )
+
+    test_utils.cleanup_files()
