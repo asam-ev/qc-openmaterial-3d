@@ -24,13 +24,13 @@
     "lightDefinitions": [
         {
             "node": "Grp_Light_0",
-            "innerConeAngle": 27,
-            "outerConeAngle": 30,
+            "innerConeAngle": 0.4712,
+            "outerConeAngle": 0.5236,
             "luminousIntensity": 10000
         },
         {
             "node": "Grp_Light_1",
-            "outerConeAngle": 360,
+            "outerConeAngle": 3.14159,
             "luminousIntensity": 500
         }
     ]
