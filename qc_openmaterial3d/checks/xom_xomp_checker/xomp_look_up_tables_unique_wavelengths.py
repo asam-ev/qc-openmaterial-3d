@@ -13,12 +13,12 @@ from qc_baselib import IssueSeverity, StatusType
 from qc_openmaterial3d import constants, basic_preconditions
 from qc_openmaterial3d.checks import models, utils
 
-CHECKER_ID = "check_asam.net:xommat:1.0.0:xomp.look_up_tables_unique_wavelengths"
+CHECKER_ID = "check_asam.net:xom:1.0.0:xomp.look_up_tables_unique_wavelengths"
 CHECKER_DESCRIPTION = (
     "Look-up tables referenced in a .xomp file should not have overlapping wavelength ranges."
 )
 CHECKER_PRECONDITIONS = basic_preconditions.CHECKER_PRECONDITIONS
-RULE_UID = "asam.net:xommat:1.0.0:xomp.look_up_tables_unique_wavelengths"
+RULE_UID = "asam.net:xom:1.0.0:xomp.look_up_tables_unique_wavelengths"
 
 _URI_CATEGORIES = [
     ("brdfUris", "brdf", "wavelengths"),
@@ -82,7 +82,6 @@ def _check_category(
 
 
 def check_rule(checker_data: models.CheckerData) -> None:
-    logging.info(f"Executing {CHECKER_ID}")
 
     file_path = checker_data.json_file_path
 

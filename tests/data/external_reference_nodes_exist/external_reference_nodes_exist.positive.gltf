@@ -1,0 +1,19 @@
+{
+    "asset": {
+        "version": "2.0"
+    },
+    "nodes": [
+        {
+            "name": "Grp_Wheel_Front_Left"
+        },
+        {
+            "name": "Grp_Wheel_Front_Right"
+        }
+    ],
+    "scene": 0,
+    "scenes": [
+        {
+            "nodes": [0, 1]
+        }
+    ]
+}

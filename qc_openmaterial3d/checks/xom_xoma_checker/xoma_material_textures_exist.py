@@ -22,14 +22,6 @@ RULE_UID = "asam.net:xom:1.0.0:xoma.material_textures_exist"
 
 
 def add_issue(checker_data: models.CheckerData, input_json_path: str, uri_path: str):
-    """
-        Add issue to checker_data.
-
-        Args:
-            input_json_path: Absolute path of the input json needed to get issue locations
-            checker_data: Checker data object used to raise issues
-            uri_path: Content of the uri field
-        """
     issue_id = checker_data.result.register_issue(
         checker_bundle_name=constants.BUNDLE_NAME,
         checker_id=CHECKER_ID,
@@ -48,15 +40,8 @@ def add_issue(checker_data: models.CheckerData, input_json_path: str, uri_path: 
             description="File does not exist.",
         )
 
-def check_paths(input_json_path: str, input_json: dict, checker_data: models.CheckerData):
-    """
-        Check if textures assigned in the materialTextureAssignment field exist.
 
-    Args:
-        input_json_path: Absolute path of the input json needed to get issue locations
-        input_json: The JSON data for the current recursion
-        checker_data: Checker data object used to raise issues
-    """
+def check_paths(input_json_path: str, input_json: dict, checker_data: models.CheckerData):
     base_dir = os.path.dirname(os.path.abspath(input_json_path))
     texture_assignment = input_json["materialTextureAssignment"]
 
@@ -67,21 +52,13 @@ def check_paths(input_json_path: str, input_json: dict, checker_data: models.Che
             if not os.path.exists(absolute_path):
                 add_issue(checker_data, input_json_path, file_path)
 
+
 def check_rule(checker_data: models.CheckerData) -> None:
-    """
-    Implements a rule to check if assigned textures exist
 
-    Args:
-        checker_data: Checker data object used to raise issues
-    """
-    logging.info(f"Executing {CHECKER_ID}")
-
-    # Check the precondition (whether the input file exists).
     file_path = Path(checker_data.json_file_path)
 
     if file_path.exists():
-        # Load file
-        with open(file_path, "r") as file:
+        with open(file_path, "r", encoding="utf-8") as file:
             input_file = json.load(file)
 
         if not os.path.splitext(file_path)[1].lower() == '.xoma':

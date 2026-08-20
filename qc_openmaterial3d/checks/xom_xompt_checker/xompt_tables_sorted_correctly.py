@@ -13,10 +13,10 @@ from qc_baselib import IssueSeverity, StatusType
 from qc_openmaterial3d import constants, basic_preconditions
 from qc_openmaterial3d.checks import models, utils
 
-CHECKER_ID = "check_asam.net:xommat:1.0.0:xompt.tables_sorted_correctly"
+CHECKER_ID = "check_asam.net:xom:1.0.0:xompt.tables_sorted_correctly"
 CHECKER_DESCRIPTION = "Arrays in look-up tables shall be sorted based on the columns starting with the first."
 CHECKER_PRECONDITIONS = basic_preconditions.CHECKER_PRECONDITIONS
-RULE_UID = "asam.net:xommat:1.0.0:xompt.tables_sorted_correctly"
+RULE_UID = "asam.net:xom:1.0.0:xompt.tables_sorted_correctly"
 
 _XOMPT_TABLES = {
     "emp": (["electromagneticProperties"],),
@@ -56,7 +56,6 @@ def _is_out_of_order(prev_row: list, curr_row: list) -> bool:
 
 
 def check_rule(checker_data: models.CheckerData) -> None:
-    logging.info(f"Executing {CHECKER_ID}")
 
     file_path = checker_data.json_file_path
 

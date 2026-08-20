@@ -12,14 +12,13 @@ from qc_baselib import IssueSeverity, StatusType
 from qc_openmaterial3d import constants, basic_preconditions
 from qc_openmaterial3d.checks import models, utils
 
-CHECKER_ID = "check_asam.net:xomgeo:1.0.0:xoma.human_class_data_defined"
+CHECKER_ID = "check_asam.net:xom:1.0.0:xoma.human_class_data_defined"
 CHECKER_DESCRIPTION = "If an asset is of type 'human', the property 'humanClassData' must be set in the metadata."
 CHECKER_PRECONDITIONS = basic_preconditions.CHECKER_PRECONDITIONS
-RULE_UID = "asam.net:xomgeo:1.0.0:xoma.human_class_data_defined"
+RULE_UID = "asam.net:xom:1.0.0:xoma.human_class_data_defined"
 
 
 def check_rule(checker_data: models.CheckerData) -> None:
-    logging.info(f"Executing {CHECKER_ID}")
 
     if not checker_data.json_file_path.endswith(".xoma"):
         checker_data.result.set_checker_status(

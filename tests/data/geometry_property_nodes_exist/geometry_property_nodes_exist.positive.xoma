@@ -1,0 +1,34 @@
+{
+    "metadata": {
+        "name": "example_asset",
+        "description": "Test asset for geometry_property_nodes_exist positive case.",
+        "uuid": "c3d4e5f6-a7b8-9012-cdef-123456789012",
+        "assetVersion": "1.0.0",
+        "openMaterial3dVersion": "1.1.0",
+        "copyrights": ["(C) 2025 ASAM e.V."],
+        "license": "MPL-2.0",
+        "authors": ["test@asam.net"],
+        "objectClass": "other",
+        "animated": false,
+        "pbrMaterialWorkflow": "metallic",
+        "triangleCount": 100,
+        "meshCount": 1,
+        "textureResolutions": ["2K"],
+        "normalMapFormat": "OpenGL",
+        "boundingBox": {
+            "x": [-1.0, 1.0],
+            "y": [-1.0, 1.0],
+            "z": [0.0, 2.0]
+        }
+    },
+    "geometryProperties": [
+        {
+            "node": "Body_Panel",
+            "thickness": 0.001
+        },
+        {
+            "node": "Window_Glass",
+            "thickness": 0.005
+        }
+    ]
+}

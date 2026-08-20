@@ -7,6 +7,8 @@
 
 import re
 import json
+import logging
+import os
 
 EXPRESSION_PATTERN = re.compile(r"[$][{][ A-Za-z0-9_\+\-\*/%$\(\)\.,]*[\}]")
 PARAMETER_PATTERN = re.compile(r"[$][A-Za-z_][A-Za-z0-9_]*")
@@ -56,24 +58,49 @@ def recursive_search(hierarchy, lines, current_line):
 
     Args:
         hierarchy (list): The remaining parts of the property hierarchy to search for.
+            Elements may be strings (object keys) or ints (array indices).
         lines (list): All lines of the JSON file.
         current_line (int): The current line number in the JSON file.
 
     Returns:
-        int: The line number of the property if found, otherwise -1.
+        int | None: The line number of the property if found, otherwise None.
     """
     if not hierarchy:
         return current_line
 
+    key = hierarchy[0]
+
+    if isinstance(key, int):
+        # Navigate to the N-th element in an array by tracking bracket depth.
+        # After the opening '[' the depth is 1; each '{' at depth 1 is an array item.
+        target = key
+        count = -1
+        depth = 0
+        for line_num, line in enumerate(lines):
+            for char in line:
+                if char in ('{', '['):
+                    if depth == 1 and char == '{':
+                        count += 1
+                        if count == target:
+                            if len(hierarchy) == 1:
+                                return current_line + line_num
+                            else:
+                                return recursive_search(
+                                    hierarchy[1:], lines[line_num:], current_line + line_num
+                                )
+                    depth += 1
+                elif char in ('}', ']'):
+                    depth -= 1
+        return None
+
     for line_num, line in enumerate(lines):
-        # Start by checking if the current line corresponds to the first property in the hierarchy
-        if f'"{hierarchy[0]}"' in line:
+        if f'"{key}"' in line:
             if len(hierarchy) == 1:
                 return current_line + line_num
             else:
                 return recursive_search(hierarchy[1:], lines[line_num:], current_line + line_num)
 
-    return -1
+    return None
 
 
 def find_property_line(json_file_path, property_hierarchy) -> int | None:
@@ -97,3 +124,21 @@ def find_property_line(json_file_path, property_hierarchy) -> int | None:
                 return recursive_search(property_hierarchy[1:], lines[line_num:], line_num + 1)
 
     return None  # If the property was not found
+
+
+def load_gltf(xoma_path: str):
+    """Load the glTF/glb model file with the same base name as the given .xoma path.
+
+    Tries .gltf first, then .glb. Returns None if neither is found or loading fails.
+    """
+    from pygltflib import GLTF2
+
+    base = os.path.splitext(xoma_path)[0]
+    for ext in (".gltf", ".glb"):
+        gltf_path = base + ext
+        if os.path.exists(gltf_path):
+            try:
+                return GLTF2().load(gltf_path)
+            except Exception as e:
+                logging.warning(f"Could not load {gltf_path}: {e}")
+    return None
