@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "asam-qc-openmaterial-3d"
-version = "1.0.0"
+version = "1.1.0"
 description = "This project implements ASAM OpenMATERIAL 3D quality checker."
 authors = ["Clemens Linnhoff <clemens.linnhoff@persival.de>"]
 license = "MPL-2.0"
