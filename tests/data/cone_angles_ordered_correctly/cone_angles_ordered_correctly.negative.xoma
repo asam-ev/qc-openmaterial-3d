@@ -24,8 +24,8 @@
     "lightDefinitions": [
         {
             "node": "Grp_Light_0",
-            "innerConeAngle": 30,
-            "outerConeAngle": 27,
+            "innerConeAngle": 0.5236,
+            "outerConeAngle": 0.4712,
             "luminousIntensity": 10000
         }
     ]
