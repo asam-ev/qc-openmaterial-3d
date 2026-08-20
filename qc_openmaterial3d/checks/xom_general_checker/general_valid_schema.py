@@ -75,9 +75,8 @@ def check_rule(checker_data: models.CheckerData) -> None:
     Args:
         checker_data: Checker data object used to raise issues
     """
-    logging.info(f"Executing {CHECKER_ID}")
 
-    with open(checker_data.json_file_path, "r") as file:
+    with open(checker_data.json_file_path, "r", encoding="utf-8") as file:
         data = json.load(file)
 
     schema_version = checker_data.schema_version
@@ -86,7 +85,7 @@ def check_rule(checker_data: models.CheckerData) -> None:
         importlib.resources.files("qc_openmaterial3d.schemas").joinpath(schema_path)
     )
 
-    with open(schema_file_path, "r") as file:
+    with open(schema_file_path, "r", encoding="utf-8") as file:
         schema_file = json.load(file)
 
     validator = Draft7Validator(schema_file)

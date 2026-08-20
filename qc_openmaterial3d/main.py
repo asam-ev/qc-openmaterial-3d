@@ -6,12 +6,18 @@
 
 import argparse
 import logging
+import pathlib
 import types
 
 from qc_baselib import Configuration, Result, StatusType
 
-from qc_openmaterial3d import constants
-from qc_openmaterial3d.checks import xom_general_checker
+from qc_openmaterial3d import constants, basic_preconditions
+from qc_openmaterial3d.checks import (
+    xom_general_checker,
+    xom_xoma_checker,
+    xom_xompt_checker,
+    xom_xomp_checker,
+)
 from qc_openmaterial3d.checks import utils, models
 
 logging.basicConfig(format="%(asctime)s - %(message)s", level=logging.INFO)
@@ -24,7 +30,26 @@ def args_entrypoint() -> argparse.Namespace:
     )
 
     group = parser.add_mutually_exclusive_group(required=True)
+    group.add_argument("-d", "--default_config", action="store_true")
     group.add_argument("-c", "--config_path")
+
+    parser.add_argument(
+        "-i",
+        "--input_file",
+        type=pathlib.Path,
+        help="Path to the input file.",
+    )
+    parser.add_argument(
+        "-r",
+        "--result_file",
+        type=pathlib.Path,
+        help="Path to the output result file.",
+    )
+    parser.add_argument(
+        "--output_config",
+        type=pathlib.Path,
+        help="Path to save the configuration after running the checks.",
+    )
 
     parser.add_argument("-g", "--generate_markdown", action="store_true")
 
@@ -36,6 +61,8 @@ def execute_checker(
     checker_data: models.CheckerData,
     required_definition_setting: bool = True,
 ) -> None:
+    logging.info(f"Executing {checker.CHECKER_ID}")
+
     # Register checker
     checker_data.result.register_checker(
         checker_bundle_name=constants.BUNDLE_NAME,
@@ -158,15 +185,69 @@ def run_checks(config: Configuration, result: Result) -> None:
     execute_checker(xom_general_checker.valid_schema, checker_data)
     execute_checker(xom_general_checker.uris_exist, checker_data)
 
+    # Load the glTF model for .xoma files (used by checks that inspect 3D model nodes)
+    if checker_data.json_file_path.endswith(".xoma") and result.all_checkers_completed_without_issue(
+        basic_preconditions.CHECKER_PRECONDITIONS
+    ):
+        checker_data.gltf = utils.load_gltf(checker_data.json_file_path)
+
+    # Run xom:xoma checker
+    execute_checker(xom_xoma_checker.material_textures_exist, checker_data)
+    execute_checker(xom_xoma_checker.texture_assignment_requires_mapping, checker_data)
+    execute_checker(xom_xoma_checker.vehicle_class_data_defined, checker_data)
+    execute_checker(xom_xoma_checker.human_class_data_defined, checker_data)
+    execute_checker(xom_xoma_checker.light_definition_nodes_exist, checker_data)
+    execute_checker(xom_xoma_checker.emissive_light_nodes_exist, checker_data)
+    execute_checker(xom_xoma_checker.external_reference_nodes_exist, checker_data)
+    execute_checker(xom_xoma_checker.geometry_property_nodes_exist, checker_data)
+    execute_checker(xom_xoma_checker.emissive_light_materials_exist, checker_data)
+    execute_checker(xom_xoma_checker.bounding_box_min_max_values, checker_data)
+    execute_checker(xom_xoma_checker.cone_angles_ordered_correctly, checker_data)
+
+    # Run xom:xompt checker
+    execute_checker(xom_xompt_checker.tables_sorted_correctly, checker_data)
+
+    # Run xom:xomp checker
+    execute_checker(xom_xomp_checker.look_up_tables_unique_wavelengths, checker_data)
+
 
 def main():
     args = args_entrypoint()
 
     logging.info("Initializing checks")
 
-
     config = Configuration()
-    config.load_from_file(xml_file_path=args.config_path)
+
+    if args.default_config:
+        logging.info("Using default configuration")
+        config.register_checker_bundle(checker_bundle_name=constants.BUNDLE_NAME)
+    else:
+        config.load_from_file(xml_file_path=args.config_path)
+
+    if args.input_file:
+        logging.info("Setting input file: %s", args.input_file)
+        config.set_config_param("InputFile", str(args.input_file))
+
+    if args.result_file:
+        logging.info("Setting result file: %s", args.result_file)
+        config.register_checker_bundle(checker_bundle_name=constants.BUNDLE_NAME)
+        config.set_checker_bundle_param(
+            checker_bundle_name=constants.BUNDLE_NAME,
+            name="resultFile",
+            value=str(args.result_file),
+        )
+
+    if (
+        config.get_checker_bundle_param(
+            checker_bundle_name=constants.BUNDLE_NAME, param_name="resultFile"
+        )
+        is None
+    ):
+        config.set_checker_bundle_param(
+            checker_bundle_name=constants.BUNDLE_NAME,
+            name="resultFile",
+            value="xom_bundle_report.xqar",
+        )
 
     result = Result()
     result.register_checker_bundle(
@@ -187,6 +268,10 @@ def main():
         ),
         generate_summary=True,
     )
+
+    if args.output_config:
+        logging.info("Writing configuration to file: %s", args.output_config)
+        config.write_to_file(args.output_config)
 
     if args.generate_markdown:
         result.write_markdown_doc("generated_checker_bundle_doc.md")

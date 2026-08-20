@@ -257,3 +257,4 @@ def test_uris_exist_xomp_negative(
         len(result.get_issues_by_rule_uid("asam.net:xom:1.0.0:general.uris_exist")) == 5
     )
     test_utils.cleanup_files()
+

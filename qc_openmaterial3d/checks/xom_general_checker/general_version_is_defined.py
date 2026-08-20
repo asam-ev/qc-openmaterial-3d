@@ -32,9 +32,8 @@ def check_rule(checker_data: models.CheckerData) -> None:
     Args:
         checker_data: Checker data object used to raise issues
     """
-    logging.info(f"Executing {CHECKER_ID}")
 
-    with open(checker_data.json_file_path, "r") as file:
+    with open(checker_data.json_file_path, "r", encoding="utf-8") as file:
         data = json.load(file)
 
     # Check if "metadata.openMaterial3dVersion" exists

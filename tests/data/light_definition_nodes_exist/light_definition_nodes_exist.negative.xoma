@@ -1,0 +1,36 @@
+{
+    "metadata": {
+        "name": "example_asset",
+        "description": "Test asset for light_definition_nodes_exist negative case.",
+        "uuid": "87769375-a510-9c68-9af8-cc3ad3dd8350",
+        "assetVersion": "1.0.0",
+        "openMaterial3dVersion": "1.1.0",
+        "copyrights": ["(C) 2025 ASAM e.V."],
+        "license": "MPL-2.0",
+        "authors": ["test@asam.net"],
+        "objectClass": "other",
+        "animated": false,
+        "pbrMaterialWorkflow": "metallic",
+        "triangleCount": 100,
+        "meshCount": 1,
+        "textureResolutions": ["2K"],
+        "normalMapFormat": "OpenGL",
+        "boundingBox": {
+            "x": [-1.0, 1.0],
+            "y": [-1.0, 1.0],
+            "z": [0.0, 2.0]
+        }
+    },
+    "lightDefinitions": [
+        {
+            "node": "Grp_Light_Low_Beam_Left_0",
+            "outerConeAngle": 0.5236,
+            "luminousIntensity": 1000.0
+        },
+        {
+            "node": "Grp_Light_Low_Beam_Left",
+            "outerConeAngle": 0.7854,
+            "luminousIntensity": 500.0
+        }
+    ]
+}

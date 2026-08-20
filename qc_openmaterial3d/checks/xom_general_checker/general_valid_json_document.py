@@ -30,7 +30,7 @@ def is_valid_json(file_path: str) -> bool:
         True if the file contains valid JSON, False otherwise.
     """
     try:
-        with open(file_path, "r") as file:
+        with open(file_path, "r", encoding="utf-8") as file:
             json.load(file)
         return True
     except json.JSONDecodeError:
@@ -44,7 +44,6 @@ def check_rule(checker_data: models.CheckerData) -> None:
     Args:
         checker_data: Checker data object used to raise issues
     """
-    logging.info(f"Executing {CHECKER_ID}")
 
     # Check the precondition (whether the input file exists).
     file_path = Path(checker_data.json_file_path)

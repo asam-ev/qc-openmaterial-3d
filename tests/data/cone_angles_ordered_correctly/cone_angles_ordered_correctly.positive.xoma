@@ -1,0 +1,37 @@
+{
+    "metadata": {
+        "name": "example_asset",
+        "description": "Test asset for cone_angles_ordered_correctly positive case.",
+        "uuid": "a1b2c3d4-e5f6-7890-abcd-000000000003",
+        "assetVersion": "1.0.0",
+        "openMaterial3dVersion": "1.1.0",
+        "copyrights": ["(C) 2025 ASAM e.V."],
+        "license": "MPL-2.0",
+        "authors": ["test@asam.net"],
+        "objectClass": "other",
+        "animated": false,
+        "pbrMaterialWorkflow": "metallic",
+        "triangleCount": 100,
+        "meshCount": 1,
+        "textureResolutions": ["2K"],
+        "normalMapFormat": "OpenGL",
+        "boundingBox": {
+            "x": [-1.0, 1.0],
+            "y": [-1.0, 1.0],
+            "z": [0.0, 2.0]
+        }
+    },
+    "lightDefinitions": [
+        {
+            "node": "Grp_Light_0",
+            "innerConeAngle": 0.4712,
+            "outerConeAngle": 0.5236,
+            "luminousIntensity": 10000
+        },
+        {
+            "node": "Grp_Light_1",
+            "outerConeAngle": 3.14159,
+            "luminousIntensity": 500
+        }
+    ]
+}

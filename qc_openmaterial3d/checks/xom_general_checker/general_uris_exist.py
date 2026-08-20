@@ -103,14 +103,13 @@ def check_rule(checker_data: models.CheckerData) -> None:
     Args:
         checker_data: Checker data object used to raise issues
     """
-    logging.info(f"Executing {CHECKER_ID}")
 
     # Check the precondition (whether the input file exists).
     file_path = Path(checker_data.json_file_path)
 
     if file_path.exists():
         # Load file
-        with open(file_path, "r") as file:
+        with open(file_path, "r", encoding="utf-8") as file:
             input_file = json.load(file)
 
         check_uris(checker_data.json_file_path, input_file, checker_data)

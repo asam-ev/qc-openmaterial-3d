@@ -1,0 +1,34 @@
+{
+    "metadata": {
+        "name": "example_asset",
+        "description": "Test asset for external_reference_nodes_exist negative case.",
+        "uuid": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
+        "assetVersion": "1.0.0",
+        "openMaterial3dVersion": "1.1.0",
+        "copyrights": ["(C) 2025 ASAM e.V."],
+        "license": "MPL-2.0",
+        "authors": ["test@asam.net"],
+        "objectClass": "other",
+        "animated": false,
+        "pbrMaterialWorkflow": "metallic",
+        "triangleCount": 100,
+        "meshCount": 1,
+        "textureResolutions": ["2K"],
+        "normalMapFormat": "OpenGL",
+        "boundingBox": {
+            "x": [-1.0, 1.0],
+            "y": [-1.0, 1.0],
+            "z": [0.0, 2.0]
+        }
+    },
+    "externalAssetReferences": [
+        {
+            "referenceNode": "Grp_Wheel_Front_Left",
+            "externalAssetUri": "./wheel.xoma"
+        },
+        {
+            "referenceNode": "NonExistentNode",
+            "externalAssetUri": "./wheel.xoma"
+        }
+    ]
+}
