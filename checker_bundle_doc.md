@@ -46,6 +46,12 @@
 * Addressed rules:
   * asam.net:xom:1.0.0:xoma.texture_assignment_requires_mapping
 
+### check_asam.net:xom:1.0.0:xoma.all_texture_rgba_codes_defined
+
+* Description: If the property 'materialTextureAssignment' is set, all color codes of all referenced textures shall be covered by the material mapping table referenced in 'materialMappingUri'.
+* Addressed rules:
+  * asam.net:xom:1.0.0:xoma.all_texture_rgba_codes_defined
+
 ### check_asam.net:xom:1.0.0:xoma.vehicle_class_data_defined
 
 * Description: If an asset is of type 'vehicle', the property 'vehicleClassData' must be set in the metadata.

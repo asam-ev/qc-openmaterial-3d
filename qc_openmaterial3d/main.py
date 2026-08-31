@@ -194,6 +194,7 @@ def run_checks(config: Configuration, result: Result) -> None:
     # Run xom:xoma checker
     execute_checker(xom_xoma_checker.material_textures_exist, checker_data)
     execute_checker(xom_xoma_checker.texture_assignment_requires_mapping, checker_data)
+    execute_checker(xom_xoma_checker.all_texture_rgba_codes_defined, checker_data)
     execute_checker(xom_xoma_checker.vehicle_class_data_defined, checker_data)
     execute_checker(xom_xoma_checker.human_class_data_defined, checker_data)
     execute_checker(xom_xoma_checker.light_definition_nodes_exist, checker_data)
