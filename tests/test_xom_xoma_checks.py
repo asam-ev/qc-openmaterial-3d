@@ -71,6 +71,118 @@ def test_material_textures_exist_no_assignment(monkeypatch) -> None:
     test_utils.cleanup_files()
 
 
+def test_all_texture_rgba_codes_defined_positive(monkeypatch) -> None:
+    base_path = "tests/data/all_texture_rgba_codes_defined/"
+    target_file_name = "all_texture_rgba_codes_defined.positive.xoma"
+    target_file_path = os.path.join(base_path, target_file_name)
+
+    test_utils.create_test_config(target_file_path)
+    test_utils.launch_main(monkeypatch)
+
+    result = Result()
+    result.load_from_file(test_utils.REPORT_FILE_PATH)
+
+    assert (
+        result.get_checker_status(xom_xoma_checker.all_texture_rgba_codes_defined.CHECKER_ID)
+        == StatusType.COMPLETED
+    )
+
+    issues = result.get_issues_by_rule_uid("asam.net:xom:1.0.0:xoma.all_texture_rgba_codes_defined")
+    assert len(issues) == 0
+
+    test_utils.cleanup_files()
+
+
+def test_all_texture_rgba_codes_defined_negative(monkeypatch) -> None:
+    base_path = "tests/data/all_texture_rgba_codes_defined/"
+    target_file_name = "all_texture_rgba_codes_defined.negative.xoma"
+    target_file_path = os.path.join(base_path, target_file_name)
+
+    test_utils.create_test_config(target_file_path)
+    test_utils.launch_main(monkeypatch)
+
+    result = Result()
+    result.load_from_file(test_utils.REPORT_FILE_PATH)
+
+    assert (
+        result.get_checker_status(xom_xoma_checker.all_texture_rgba_codes_defined.CHECKER_ID)
+        == StatusType.COMPLETED
+    )
+
+    issues = result.get_issues_by_rule_uid("asam.net:xom:1.0.0:xoma.all_texture_rgba_codes_defined")
+    assert len(issues) == 1
+    assert issues[0].level == IssueSeverity.ERROR
+
+    test_utils.cleanup_files()
+
+
+def test_all_texture_rgba_codes_defined_too_many_colors(monkeypatch) -> None:
+    base_path = "tests/data/all_texture_rgba_codes_defined/"
+    target_file_name = "all_texture_rgba_codes_defined.too_many_colors.xoma"
+    target_file_path = os.path.join(base_path, target_file_name)
+
+    test_utils.create_test_config(target_file_path)
+    test_utils.launch_main(monkeypatch)
+
+    result = Result()
+    result.load_from_file(test_utils.REPORT_FILE_PATH)
+
+    assert (
+        result.get_checker_status(xom_xoma_checker.all_texture_rgba_codes_defined.CHECKER_ID)
+        == StatusType.COMPLETED
+    )
+
+    issues = result.get_issues_by_rule_uid("asam.net:xom:1.0.0:xoma.all_texture_rgba_codes_defined")
+    assert len(issues) == 1
+    assert issues[0].level == IssueSeverity.ERROR
+
+    test_utils.cleanup_files()
+
+
+def test_all_texture_rgba_codes_defined_no_assignment(monkeypatch) -> None:
+    base_path = "tests/data/all_texture_rgba_codes_defined/"
+    target_file_name = "all_texture_rgba_codes_defined.no_assignment.xoma"
+    target_file_path = os.path.join(base_path, target_file_name)
+
+    test_utils.create_test_config(target_file_path)
+    test_utils.launch_main(monkeypatch)
+
+    result = Result()
+    result.load_from_file(test_utils.REPORT_FILE_PATH)
+
+    assert (
+        result.get_checker_status(xom_xoma_checker.all_texture_rgba_codes_defined.CHECKER_ID)
+        == StatusType.COMPLETED
+    )
+
+    issues = result.get_issues_by_rule_uid("asam.net:xom:1.0.0:xoma.all_texture_rgba_codes_defined")
+    assert len(issues) == 0
+
+    test_utils.cleanup_files()
+
+
+def test_all_texture_rgba_codes_defined_no_mapping(monkeypatch) -> None:
+    base_path = "tests/data/all_texture_rgba_codes_defined/"
+    target_file_name = "all_texture_rgba_codes_defined.no_mapping.xoma"
+    target_file_path = os.path.join(base_path, target_file_name)
+
+    test_utils.create_test_config(target_file_path)
+    test_utils.launch_main(monkeypatch)
+
+    result = Result()
+    result.load_from_file(test_utils.REPORT_FILE_PATH)
+
+    assert (
+        result.get_checker_status(xom_xoma_checker.all_texture_rgba_codes_defined.CHECKER_ID)
+        == StatusType.COMPLETED
+    )
+
+    issues = result.get_issues_by_rule_uid("asam.net:xom:1.0.0:xoma.all_texture_rgba_codes_defined")
+    assert len(issues) == 0
+
+    test_utils.cleanup_files()
+
+
 def test_texture_assignment_requires_mapping_positive(monkeypatch) -> None:
     base_path = "tests/data/texture_assignment_requires_mapping/"
     target_file_name = "texture_assignment_requires_mapping.positive.xoma"

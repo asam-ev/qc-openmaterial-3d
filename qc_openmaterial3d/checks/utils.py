@@ -12,6 +12,12 @@ import os
 
 EXPRESSION_PATTERN = re.compile(r"[$][{][ A-Za-z0-9_\+\-\*/%$\(\)\.,]*[\}]")
 PARAMETER_PATTERN = re.compile(r"[$][A-Za-z_][A-Za-z0-9_]*")
+RGB_CODE_PATTERN = re.compile(r"^rgb:(\d{1,3});(\d{1,3});(\d{1,3})$")
+
+# Assignment textures consist of flat color regions, each keying into the material
+# mapping table. An image with more distinct colors than this is not a valid
+# assignment texture, and reporting every single color would flood the report.
+MAX_ASSIGNMENT_TEXTURE_COLORS = 256
 
 
 def get_open_material_version(json_file_path: str) -> str:
@@ -142,3 +148,58 @@ def load_gltf(xoma_path: str):
             except Exception as e:
                 logging.warning(f"Could not load {gltf_path}: {e}")
     return None
+
+
+def parse_rgb_code(code: str) -> tuple[int, int, int] | None:
+    """Parse an ASAM OpenMATERIAL 3D RGB code into an (R, G, B) tuple.
+
+    RGB codes are formatted as rgb:<R>;<G>;<B>, where <R>, <G> and <B> are
+    integers in the range [0, 255].
+
+    Args:
+        code (str): The string to parse, e.g. 'rgb:255;0;0'.
+
+    Returns:
+        tuple[int, int, int] | None: The color as an (R, G, B) tuple, or None if
+            the string is not an RGB code or a component is outside [0, 255].
+    """
+    if not isinstance(code, str):
+        return None
+
+    match = RGB_CODE_PATTERN.match(code)
+    if match is None:
+        return None
+
+    color = tuple(int(component) for component in match.groups())
+    if any(component > 255 for component in color):
+        return None
+
+    return color
+
+
+def get_texture_colors(
+    texture_path: str, max_colors: int = MAX_ASSIGNMENT_TEXTURE_COLORS
+) -> set[tuple[int, int, int]] | None:
+    """Collect the unique colors used in an image.
+
+    The image is converted to RGB first, so palette based and grayscale images
+    are handled uniformly and the alpha channel is discarded. ASAM OpenMATERIAL
+    3D RGB codes have no alpha component.
+
+    Args:
+        texture_path (str): Path to the image file.
+        max_colors (int): Maximum number of distinct colors to collect.
+
+    Returns:
+        set[tuple[int, int, int]] | None: The unique (R, G, B) colors of the
+            image, or None if the image contains more than max_colors of them.
+    """
+    from PIL import Image
+
+    with Image.open(texture_path) as image:
+        colors = image.convert("RGB").getcolors(maxcolors=max_colors)
+
+    if colors is None:
+        return None
+
+    return {color for _, color in colors}

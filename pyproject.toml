@@ -16,6 +16,7 @@ asam-qc-baselib = "^1.0.0rc1"
 lxml = "^5.2.2"
 jsonschema = "^4.0.0"
 pygltflib = "^1.16.5"
+pillow = "^12.3.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.2.2"
